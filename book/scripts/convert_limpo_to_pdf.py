@@ -2,8 +2,8 @@
 import markdown
 from weasyprint import HTML
 
-INPUT = "sipcp_conteudo_limpo.md"
-OUTPUT = "sipcp_conteudo_limpo.pdf"
+INPUT = "../ocr/conteudo_limpo.md"
+OUTPUT = "../pdf/conteudo_limpo.pdf"
 
 with open(INPUT, "r", encoding="utf-8") as f:
     md_text = f.read()

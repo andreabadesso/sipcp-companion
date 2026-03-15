@@ -41,6 +41,9 @@ npm-debug.log
 # Self-signed certificates
 /priv/cert/
 
+# Generated PDFs (rebuild via book/scripts/)
+/book/pdf/
+
 # Nix
 .nix-postgres/
 .direnv/

@@ -2,8 +2,8 @@
 import markdown
 from weasyprint import HTML
 
-INPUT = "ocr_teste_paginas_193-201_256-258.md"
-OUTPUT = "ocr_teste_paginas_193-201_256-258.pdf"
+INPUT = "../ocr/paginas_193-201_256-258.md"
+OUTPUT = "../pdf/paginas_193-201_256-258.pdf"
 
 with open(INPUT, "r", encoding="utf-8") as f:
     md_text = f.read()
