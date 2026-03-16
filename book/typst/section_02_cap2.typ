@@ -1,3 +1,5 @@
+#import "figures_img.typ": *
+
 #pagebreak()
 == CAPÍTULO II
 
@@ -49,16 +51,7 @@ Stafford Beer#footnote[Ibíd. p. 34.] propõe uma classificação dos sistemas, 
 
 A figura 1 evidencia um aspecto curioso: embora possa parecer, à primeira vista, ser lógico esperar-se que os sistemas artificialmente criados atinjam sempre e integralmente os propósitos que os condicionam, na realidade eles podem encerrar alta dose de probabilismo, em termos de resultados. Este é o caso da economia e da empresa. Também se enganou o Dr. Jeckil quando imbuído dos mais nobres propósitos científicos, produziu o imprevisível Mr. HYDE...
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[
-  *Figura 1 — A Classificação Arbitrária de Stafford Beer*
-
-  #table(
-    columns: 4,
-    [*SISTEMAS*], [*Simples*], [*Complexos*], [*Excessivamente complexos*],
-    [*DETERMINÍSTICOS*], [Encaixe de Janela\ Lay-out de instalações\ Bilhar], [Computador eletrônico digital\ Automação\ Sistema planetário], [VAZIO],
-    [*PROBABILÍSTICOS*], [Arremesso de moeda\ Movimentos da água viva\ Controle estatístico Qualidade], [Ter Ações\ Reflexos condicionados\ Lucratividade industrial], [A ECONOMIA\ O CÉREBRO\ A EMPRESA],
-  )
-]
+#figura-1()
 
 Mais um aspecto merece ser ressaltado: a caracterização de um sistema, segundo a complexidade de sua estrutura, decorre de uma avaliação objetiva, de aspectos físicos, tangíveis, enquanto que a caracterização de seu grau de certeza (incerteza) implica alta dose de subjetivismo na avaliação do potencial sistêmico e na compreensão de seu "modus operandi".
 
@@ -78,7 +71,7 @@ O nosso segundo exemplo versará sobre a empresa, que, na classificação de Bee
 
 A primeira objeção do leitor basear-se-á, com toda a certeza, no seguinte argumento: e se estivermos em presença de uma pequena empresa, como a do organograma (Figura 2)?...
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 2 — Organograma de uma pequena empresa*\ Estrutura hierárquica com três caixas: GERÊNCIA-GERAL no topo, conectada por linhas a PRODUÇÃO (esquerda) e VENDAS (direita).]
+#figura-2()
 
 Trata-se, evidentemente, de uma organização rudimentar. Situação tipicamente característica de propriedade e de gerência concentradas em uma só pessoa, o que é comum nos países pouco desenvolvidos economicamente. A departamentalização é mínima, por serem escassos os recursos humanos, embora compatíveis com o potencial físico instalado e as metas de produção fixadas. Não obstante, a empresa funciona, e bem! Seus produtos têm aceitação no mercado, Produção e Vendas entendem-se perfeitamente, as finanças estão equilibradas, a Gerência-Geral não tem de que se queixar... Pensa-se, até, num Plano de Expansão.
 
@@ -140,7 +133,7 @@ A dinâmica dos sistemas abertos difere, em alguns aspectos essenciais, da dinâ
 
 Imaginemos o sistema representado pelo organograma da figura 3.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 3 — Organograma da Empresa com órgão de Pesquisa*\ Estrutura hierárquica com caixa central "GESTÃO" ligada a quatro departamentos: "PRODUÇÃO" (superior esquerdo), "ESTOQUE" (esquerdo), "VENDAS" (inferior esquerdo) e "PESQUISA" (inferior direito).]
+#figura-3()
 
 A dinâmica do sistema é de fácil inferência: Gestão tem uma meta de vendas a cumprir, que é o propósito atual do sistema, devendo, ao mesmo tempo, assegurar um ritmo operativo em Produção de forma a manter um lote econômico em Estoque, o qual é regulado em função de Vendas. Gestão conta com um órgão de assessoria — Pesquisa — responsável pela obtenção de sinergia no interior do sistema#footnote[Sinergia: efeitos cooperativos e interativos. Neologismo criado por Herman Kahn para explicar a combinação de esforços multipessoais e interdisciplinares, que tornaram possível a construção do submarino polaris "George Washington" no curto espaço de tempo disponível.] e por sua evolução, o que implica em detectar, o mais aprioristicamente possível, as perturbações que possam afetar a marcha do sistema, indicando as correções necessárias, a serem feitas em tempo real.#footnote[Tempo real: em Cibernética se diz de intervenção realizada em cima do fato, uma espécie de limiar entre o "a priori" e o "a posteriori". Mais adiante ver-se-á que o mecanismo de auto-regulação opera em tempo real.]
 
@@ -154,7 +147,7 @@ _Seta nº 2_ — indica a atuação de Pesquisa sobre o mercado, no sentido de a
 
 _Seta nº 3_ — indica que Pesquisa recebe do mercado as informações requeridas e, após processá-las, transmite, para Produção, um novo "design" do item crítico e, para Vendas, sugestões sobre "marketing", uma vez que a política de vendas da empresa, não apenas as características do item crítico, foram pontos fracos explorados pelo concorrente;
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 4 — PRAXEOGRAMA OPERATÓRIO*\ Diagrama com cinco blocos: "PRODUÇÃO" (superior esquerdo), "PESQUISA" (superior direito), "ESTOQUE" (inferior esquerdo), "VENDAS" (inferior centro), "MERCADO" (inferior direito). Setas numeradas de 1 a 7 indicam os fluxos entre os órgãos: seta 1 de Pesquisa para Produção; seta 2 de Pesquisa para Mercado; seta 3 de Pesquisa para Vendas e de Mercado para Pesquisa (retorno); seta 4 de Produção para Estoque; seta 5 de Estoque para Vendas; seta 6 de Vendas para Mercado; seta 7 de Mercado para Pesquisa. Setas pontilhadas indicam o ciclo de retroalimentação.]
+#figura-4()
 
 _Seta nº 4_ — indica que Estoque recebe de produção o item crítico, redesenhado, e o repassa para Vendas;
 
@@ -188,7 +181,7 @@ Tornemos fechado o sistema da Fig. 3, com a supressão, no organograma, de Pesqu
 
 O praxeograma operatório do novo sistema (Fig. 5), mostra que o mecanismo de auto-regulação funciona de acordo com sua metodologia rotineira: Gestão mantém Produção sob controle, de forma a permanecer, em Estoque, o lote econômico, que é função de Vendas, cujo comportamento é transmitido incessantemente, a Gestão, fechando-se o circuito. E as saídas, para o universo exterior?... Estas existem, apenas, em termos de vendas; o sistema desconhece o subjetivismo do universo exterior, pois, como vimos, não tem recursos para auscultá-lo.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 5 — PRAXEOGRAMA OPERATÓRIO DO NOVO SISTEMA*\ Diagrama com quatro blocos dispostos em quadrado: "PRODUÇÃO" (superior esquerdo), "GESTÃO" (superior direito), "ESTOQUE" (inferior esquerdo), "VENDAS" (inferior direito). Setas sólidas e tracejadas indicam o fluxo entre os blocos: de GESTÃO para PRODUÇÃO; de PRODUÇÃO para ESTOQUE; de ESTOQUE para VENDAS; de VENDAS para GESTÃO.]
+#figura-5()
 
 Quanto ao mecanismo de "feed-back", entretanto, a metodologia, desta vez, não funciona como rotineiramente. O método heurístico não conta com as respostas do universo exterior; tem de contentar-se, apenas, com o que o sistema pode lhe oferecer. Assim, é capaz de agir somente contra os efeitos da perturbação, não tendo como diagnosticar-lhe as causas. Se a perturbação persistir, isto é, caso não cesse espontaneamente, o propósito do sistema — sobrevivência a longo prazo — estará sofrendo séria ameaça. Outra consequência: o sistema manter-se-á imutável, sendo incapaz de evoluir.
 
@@ -204,7 +197,7 @@ O conceito encaixa-se, com perfeição, no princípio geral da degradação da e
 
 Infere-se, como corolário, que os sistemas isolados, em seu estado natural, o de distribuição espacial uniforme do calor, são desprovidos de energia, enquanto que se tornam energéticos na medida em que se altere essa distribuição. Tal característica dos sistemas termodinâmicos é comum a todos os demais sistemas físicos. É fácil observar que os líquidos tendem a nivelar-se nos vasos comunicantes. O desnível mede o potencial hidráulico. A energia elétrica flui em corrente cuja intensidade varia diretamente com a diferença de potencial entre os extremos do circuito. Há inumeráveis exemplos de fenômenos físicos que servem para demonstrar a ocorrência de um movimento entrópico de volta ao estado natural, pré-existente, de ordem, nos sistemas em que essa ordem foi alterada. A tendência da natureza é, portanto, para a ordem, cuja medida é a entropia. Se uma causa exógena (injeção de informações, como será visto mais adiante) desarruma as coisas no interior do sistema, a entropia se reduz e a energia aumenta, na mesma proporção. Cessado o primeiro embate, a entropia começa a arrumar a casa, absorvendo (ou melhor, consumindo) energia até que esta se degrade totalmente e as coisas permaneçam quietas em seus lugares. Assim, a entropia associa-se à ordem e a energia à desordem, conforme mostra a figura 6.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 6 — Relação Entropia/Energia e Ordem/Desordem*\ Dois gráficos lado a lado. À esquerda: eixo vertical rotulado "ENTROPIA", eixo horizontal rotulado "ENERGIA"; curva decrescente (hipérbole) mostrando relação inversa entre entropia e energia. À direita: eixo vertical rotulado "ORDEM", eixo horizontal rotulado "DESORDEM"; curva decrescente (hipérbole) mostrando relação inversa entre ordem e desordem.]
+#figura-6()
 
 Verifica-se, pois, que os sistemas isolados (ciberneticamente, fechados) tendem a sucumbir à entropia, pela total degradação da energia neles contida.
 
@@ -218,7 +211,7 @@ Ciberneticamente, informação e energia se equivalem. Assim, um sistema altamen
 
 Consideremos o sistema fechado, cuja condição inicial pode ser representada pelo modelo isomórfico da figura 7, do qual se sabe ainda, que consome duas unidades de energia para realizar uma transição.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 7 — Modelo isomórfico do sistema fechado com condição inicial C₁*\ Caixa retangular contendo as expressões "Eₙ = 8   C₁" e "Eₚ = 2".]
+#figura-7()
 
 Do modelo, e do que se sabe a respeito do sistema, depreende-se que:
 
@@ -228,7 +221,7 @@ Do modelo, e do que se sabe a respeito do sistema, depreende-se que:
 
 As transições operadas são as da figura 8.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 8 — Sequência de transições do sistema fechado*\ Sequência de quatro caixas retangulares ligadas por setas: C₂ (Eₙ=6, Eₚ=4) → C₃ (Eₙ=4, Eₚ=6) → C₄ (Eₙ=2, Eₚ=8) → C₅ (Eₙ=0, Eₚ=10).]
+#figura-8()
 
 Do comportamento do sistema infere-se que:
 
@@ -260,24 +253,9 @@ A figura 9 — Quadro das Operações Lógicas do Sistema — e a figura 10 — 
 
 "A" adotou um método heurístico, de tentativas, baseado na lógica mais simples, por isso a mais eficiente: escolha de uma, entre duas alternativas mutuamente exclusivas. A Teoria da Informação batizou-a de "Lógica de Decisões Binárias". O operador é um heurístico.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[
-  *Figura 9 — QUADRO DE OPERAÇÕES LÓGICAS DO SISTEMA*
+#figura-9()
 
-  #table(
-    columns: 3,
-    [*Palpite de A*], [*Inferência de B*], [*Redução da Incerteza*],
-    [Pré operação], [], [1/40],
-    [Vermelha?], [Não], [1/20],
-    [Espadas?], [Não], [1/10],
-    [Menor que 7?], [Sim], [1/5],
-    [Maior que 3?], [Sim], [1/2,5⁺],
-    [Maior que 5?], [Não], [1/1 — Certeza],
-  )
-
-  Decisão na certeza: a carta é 3 ∨ 4 ∨ 5 e o naipe é paus...\ (⁺) — Atente-se para o fato de que há uma carta fora do baralho
-]
-
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 10 — PRAXEOGRAMA OPERATÓRIO DO SISTEMA*\ Árvore de decisão binária com nó raiz "Pré operação", ramificando-se sucessivamente pelas perguntas: Vermelha? → Não → Espadas? → Não → Paus → \<7? → Sim → \>3? → Sim → \<5? → "= 4" — DECISÃO NA CERTEZA.]
+#figura-10()
 
 Observando a escala de redução,#footnote[A certeza é o inverso da variedade. É fácil notar que, quando elas se equivalem, o sistema atingiu seu propósito, pois se C = 1, C = v se, e somente se, C = 1 e v = 1.] vemos que se trata de uma sucessão convergente (converge para a incerteza 1 / 1 = certeza), infinita, cuja lei de formação consiste em dividir os termos sempre ao meio.
 

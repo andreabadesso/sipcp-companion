@@ -1,3 +1,5 @@
+#import "figures_img.typ": *
+
 #pagebreak()
 = SEGUNDA PARTE
 
@@ -113,7 +115,7 @@ O organograma da ALPHA – Implementos Industriais – SA, depois de reformulado
 
 Chamamos a atenção para duas assessorias, a nível presidência: "controller", incumbida de vigiar as variáveis essenciais sinérgicas, e "informática", incumbida de processar as informações que transitam no interior do sistema, o que vale dizer, executar a função de transferência. Mas o papel de informática não se restringe ao processamento, "a posteriori", das informações. Diríamos que a sua tarefa mais importante é outra: conhecendo o comportamento de todas as partes do sistema, cujas performances habituais armazena em sua "memória", fornece subsídios à formulação de séries históricas, estatísticas, de níveis de desempenho-padrão, instituídos "a priori", os quais constituem os fundamentos da contabilidade gerencial a ser posta em prática em todos os graus da hierarquia de controle do sistema alpha. É informática, portanto, a sede do SIPCP. A presidência, (com suas assessorias) exerce o papel reservado aos dois níveis mais elevados das hierarquias de controle, que correspondem aos terceiro e quarto níveis de pilotagem, respectivamente evolução e mutação. O vice-presidente executivo e os diretores de departamentos consubstanciam a gestão, segundo nível. Os gerentes de divisão de serviços operam no 1º nível o sistema físico.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 25 — Organograma (simplificado) da ALPHA.*\ Estrutura hierárquica com PRESIDENTE no topo, ligado a três assessorias: Infor(mática), Control(er) e Vice-Pres(idente). O Vice-Presidente se conecta a quatro departamentos: Pes(soal), Finan(ceiro), Prod(ução) e Com(ercial), além de Adm(inistração). Cada departamento possui subdivisões em D Sv (Divisão de Serviços) com CCAO (Centro de Custos Auxiliares Operacionais) e, no caso de Produção, também D Sv CCP (Centro de Custo de Produção) e CCAI (Centro de Custos Auxiliares Indiretos). Os departamentos Com e Adm possuem apenas CCAO diretamente ligados. Legenda: CCP = Centro de custo de produção; CCAI = centro de custos auxiliares indiretos.]
+#figura-25()
 
 O funcionamento do modelo, em termos de estabelecimento de variáveis de ação e de variáveis essenciais, não apresenta novidades. Tem-se a considerar, apenas, que quaisquer dos quatro níveis de pilotagem contam, agora, com um banco de dado infalível, situado em informática, ligado permanentemente ao eixo de comando central, que passa pelo vice-presidente executivo e através do qual transitam os interceptores.
 
@@ -139,24 +141,7 @@ Na figura 26 — Grafo das Atividades de Planejamento da Produção, distingue-s
 
 Examinemos cada um desses passos, de per si.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 26 — Grafo das atividades de Planejamento da Produção.*\ Diagrama em grafo com nós circulares numerados e conectados por setas direcionais. Nós principais: 1 DT (Definição do Trabalho), 2 ICC (Isolamento dos Centros de Custos), 3 IPC (Integração do Plano de Contas), 4 ACP (Avaliação da Capacidade Produtiva), 5 EV (Estimativa de Vendas). Nós secundários: 1.1 EDT, 1.2 ABC, 1.2.1 FM, 1.2.2 FC, 2.1 CCP, 2.2 CCA, 2.2.1 CCAI, 2.2.2 CCAO, 3.1 CG, 3.2 CF. As setas indicam fluxo de dependência entre as atividades.
-
-*Legenda:*
-- 1. – definição do trabalho
-- 1.1 – estrutura de divisão do trabalho
-- 1.2 – classificação ABC
-- 1.2.1 – folhas de materiais ABC
-- 1.2.2 – folhas de operadores ABC
-- 2. – isolamento dos centros de custos
-- 2.1 – centros de custos de produção
-- 2.2 – centros de custos auxiliares
-- 2.2.1 – centros de custos indiretos
-- 2.2.2 – centros de custos operacionais
-- 3. – integração de um plano de contas
-- 3.1 – contabilidade gerencial
-- 3.2 – contabilidade financeira
-- 4. – avaliação da capacidade produtiva
-- 5. – estimativa de vendas]
+#figura-26()
 
 ===== 1º Passo – Definição do Trabalho
 
@@ -237,19 +222,7 @@ Controlar consiste, ciberneticamente, em vigiar as saídas de uma caixa negra#fo
 
 Cada departamento da empresa cibernética possui um sistema de gestão próprio, com seu dispositivo específico de auto-regulação, em obediência aos dois princípios básicos: o da gestão, que impõe a posição "interna corporis" de controlador e controlando; e o da especificidade do controle, ou da especialização. Assim, o papel de SIPCP é alertar, via eixo de comando central, a respeito de eventuais desvios, os quais serão tratados nos níveis da hierarquia de controle acoplados com o sistema físico a partir das divisões de serviço que jurisdicionam os respectivos centros de custos.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 27 — Grafo das atividades de programação e controle da produção.*\ Diagrama com nós circulares interligados por setas. Na base: nó "1 P.P" (Programação da Produção) conectado a "1.1 PE", "1.1.1 PCCAO", "1.1.2 PCCAI", "1.2 PF" e "1.3.1 PCCP". Esses nós convergem para "2 ARO" (Alocação de Recursos e Orçamentação). De ARO parte seta para "3 C.P" (Controle da Produção), que se conecta a "3.1 PPE" e "3.2 PPR". De C.P e dos nós laterais partem setas para "4 AR" (Auto-Regulação) no topo.
-
-*Legenda:*
-- 1. – programação da produção
-- 1.1 – performance estimada
-- 1.1.1 – performance dos CCP
-- 1.1.2 – performance dos CCAI
-- 1.2.1 – performance dos CCAO
-- 2. – alocação de recursos e orçamentação
-- 3. – controle de produção
-- 3.1 – processamento da performance estimada
-- 3.2 – processamento da performance real
-- 4. – auto-regulação]
+#figura-27()
 
 ==== O Modelo em Ação
 
@@ -261,15 +234,7 @@ As performances reais obtidas foram as seguintes: CCP = 80; CCAI = 20; CCAO₁=3
 
 O SIPCP emitiu as seguintes listagens, encaminhando-as aos respectivos departamentos e a controller:
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Fig. 28 — Orçamento colunar flexível (extrato) da ALPHA – Implementos Ind. SA*
-
-#table(
-  columns: 11,
-  [*% desempenho*], [*Prod. CCP*], [*Prod. CCAI*], [*Fin. CCAO₁*], [*Fin. CCAO₂*], [*Pes. CCAO₃*], [*Pes. CCAO₄*], [*Adm. CCAO₅*], [*Adm. CCAO₆*], [*Com. CCAO₇*], [*Com. CCAO₈*],
-  [90%], [60], [15], [5], [3], [5], [1], [3], [6], [4], [2],
-  [100%], [75], [22], [6], [4], [6], [2], [4], [7], [5], [3],
-  [110%], [85], [26], [8], [5], [7], [3], [5], [8], [6], [2],
-)]
+#figura-28()
 
 — departamento de produção: CCP, estimado 75, real 80; CCAI, estimado 22, real 20;
 
@@ -283,11 +248,7 @@ O SIPCP emitiu as seguintes listagens, encaminhando-as aos respectivos departame
 
 Para controller, a quem incumbe vigiar as variáveis essenciais sinérgicas#footnote[_A linha de sinergia materializa o cumprimento da lei do valor ótimo, pois, sobre ela, situam-se as performances dos centros de custos que deverão resultar num fluxo harmônico do processo produtivo, sem gargalos ou folgas._], o sistema está oscilando. A figura 29 mostra a linha de sinergia formada pelos pontos correspondentes às performances estimadas para um desempenho de 100% (exigido do sistema, conforme programação) e a linha de oscilação, formada pelos pontos correspondentes às performances reais, onde há ruptura.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Fig. 29 — Gráfico de sinergia e oscilação do sistema.*\ Diagrama com eixo horizontal representando os centros de custos na sequência: CCP, CCAI, CCAO₁, CCAO₂, CCAO₃, CCAO₄, CCAO₅, CCAO₆, CCAO₇, CCAO₈. Duas linhas percorrem o gráfico: a linha de sinergia real (performance real), tracejada, e a linha de sinergia virtual (performance estimada), contínua. A escala vertical indica 100% e 160%. O ponto CCAO₈ atinge 160% na linha real, indicando desvio acentuado.
-
-*Legenda:*\
-— — Linha de sinergia real (performance real)\
-—— Linha de sinergia virtual (performance estimada)]
+#figura-29()
 
 O papel de controller será alertar a presidência a respeito da ruptura da linha de sinergia. A coordenação dos departamentos, visando a deslocar a linha de oscilação para cima da linha de sinergia, será deflagrada por intermédio do vice-presidente executivo. Poderá ocorrer, também, o inverso, isto é, ter-se que deslocar a linha de sinergia para a posição ocupada pela linha de oscilação. Isto se dará se o SIPCP, que é também um órgão de pesquisa e desenvolvimento, constatar ter havido erro na avaliação da capacidade produtiva de determinados centros de custos, e sugerir, com base nos desvios, os necessários reajustamentos quando da elaboração de orçamentos futuros.
 

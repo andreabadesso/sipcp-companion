@@ -1,3 +1,5 @@
+#import "figures_img.typ": *
+
 #pagebreak()
 == CAPÍTULO III — PILOTAGEM DOS SISTEMAS
 
@@ -27,7 +29,7 @@ A dona de casa abre seu livro de receitas e lê, com atenção:
 
 Bolo econômico: Ingredientes: 3 xícaras de açúcar, 3 ovos, 1 colher de sopa de fermento, 2 colheres de manteiga, 1 copo de leite, preferentemente "in natura"; bater as claras, em neve, até que atinjam o máximo volume; colocar os ingredientes na seguinte ordem: açúcar e manteiga (bem misturados), gemas, demais ingredientes, reservando as claras em neve para o último lugar. Forno bem quente; vigiar, entretanto, para que não queime a massa. O bolo deverá apresentar-se corado por fora e cozido internamente. Teste com um palito. Deve estar, ainda, fofo, aceitando o corte sem esfarelar.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 11 — MODELO CIBERNÉTICO (simplificado) de Administração Industrial*\ Diagrama com quatro blocos interligados. No topo à esquerda, "Universo Exterior" com setas bidirecionais para baixo conectando ao bloco "Sistema Físico". Do "Sistema Físico" parte uma seta à direita para um marcador circular com ponteiro (indicador "O"). Do marcador saem setas para baixo ao bloco "Controle" e deste para a esquerda ao bloco "Regulação". A "Regulação" conecta-se de volta ao "Sistema Físico" com seta para cima. Os blocos "Regulação" e "Controle" estão unidos por uma barra inferior rotulada "Sistema de Gestão". Do marcador, uma seta tracejada sobe à direita e retorna horizontalmente tracejada à esquerda com o rótulo "Informações", conectando ao "Universo Exterior".]
+#figura-11()
 
 As instruções relativas à manipulação dos ingredientes constituem variáveis de ação; os padrões de qualidade, variáveis essenciais.
 
@@ -148,7 +150,7 @@ A fim de fixar uma terminologia uniforme#footnote[_"As propriedades atribuídas 
 
 A representação espacial dos níveis de pilotagem utilizada por Jacques Melese#footnote[_"A Gestão pelos Sistemas"_ (ver bibliografia).] — círculos concêntricos — parece-nos a mais sugestiva. Nesse modelo geométrico o primeiro nível — Operação, apresentar-se-á como na figura 12, abaixo.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 12 — 1º Nível de Pilotagem*\ Diagrama de círculos concêntricos representando o 1º nível de pilotagem. O círculo interno é rotulado "SISTEMA FÍSICO"; o círculo externo que o envolve é rotulado "OPERAÇÃO". Abaixo do diagrama lê-se "1º NÍVEL".]
+#figura-12()
 
 Um bom exemplo de pilotagem neste nível envolve um ônibus (SF) e seu motorista (SG).
 
@@ -168,7 +170,7 @@ Se o sistema de gestão da microempresa for rudimentar, como o da ameba, não lh
 
 Vimos que a gestão visa ao controle e sentimos ser intuitivo que a existência de um poder controlador implica a existência de um elemento controlado. Tal é a razão pela qual, no modelo circular de pilotagem (Fig. 13), gestão envolve operação.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 13 — 2º Nível de Pilotagem*\ Diagrama de três círculos concêntricos representando os níveis de pilotagem. O círculo mais interno é rotulado "S F"; o intermediário é rotulado "OPERAÇÃO" com a indicação "1º NÍVEL"; o círculo externo é rotulado "GESTÃO" com a indicação "2º NÍVEL".]
+#figura-13()
 
 O matrimônio feliz, de operação com gestão, decorre de um importante princípio de cibernética: o subsistema controlador e o subsistema controlado têm de pertencer ao mesmo sistema de gestão, isto é, viver sob o mesmo teto. Chamá-lo-emos de "Princípio da Gestão".
 
@@ -176,7 +178,7 @@ O princípio da gestão, não obstante a importância de que se reveste, sofre c
 
 A empresa do organograma (Figura 14) consiste, ciberneticamente, de um conjunto de subsistemas em interação, os departamentos, cada qual exercendo uma função específica em proveito do sistema global, a empresa. A sinergia — efeitos interativos e cooperativos — entre os componentes do sistema constitui a principal preocupação da hierarquia superior (a presidência), que, a fim de assegurar a obediência à "lei do valor ótimo"#footnote[_Ver nota 2, Cap. I da 2ª parte._], institui um órgão de assessoria, "controller", que a ela se reporta diretamente e que não tem canais diretos de comunicação com os departamentos.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 14 — Organograma da Empresa com órgão de assessoria (CONTROLLER)*\ O organograma mostra o PRESIDENTE no centro-direita, com quatro departamentos à esquerda: PRODUÇÃO, VENDAS, FINANÇAS e PESSOAL, todos ligados ao PRESIDENTE por linhas hierárquicas. O CONTROLLER aparece abaixo do PRESIDENTE, ligado a ele por linha de assessoria.]
+#figura-14()
 
 Controller desfruta de elevado status na empresa, dada a proximidade da presidência e por ter acesso, direto, a ela, o que lhe confere prestígio, poder e respeitabilidade. O desejo de auto-afirmação, inerente ao espírito humano, exacerba-se em controller, por sentir-se superdotado para sua plena realização. Nessas condições, é comum ocorrer uma disfunção do órgão: extrapolando da missão para a qual fora instituído — obtenção de sinergia — controller desloca sua preocupação para o comportamento das VE departamentais, assunto que não lhe diz respeito diretamente, pois eventuais desvios seriam causas, apenas mediatas, de violação da lei do valor ótimo. Além disso, os departamentos, na hierarquia da gestão, contam com elementos específicos de controle, sem qualquer ligação com controller, mesmo porque, como vimos, este não tem canais de comunicação direta com os departamentos.
 
@@ -194,7 +196,7 @@ O que vimos, até agora, sobre pilotagem dos sistemas é suficiente para a formu
 
 O funcionamento do modelo departamental de gestão, nos dois níveis de pilotagem, não apresenta nada de novo, mas oferece um aspecto, importante, a ressaltar: a especificidade da gestão.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 15 — Modelo Departamental de Gestão*\ Diagrama com dois subsistemas: à esquerda, o Sistema de Gestão Departamental (composto por Regulador/operação e Controle/gestão), e à direita, o Departamento X (com entradas provenientes de HS = hierarquia superior, VES = Controller VE sinérgicas, e saída de VE departamentais). Setas indicam fluxo de Variáveis Essenciais e Variáveis de Ação entre os componentes. O sistema físico é o Regulador. HS = hierarquia superior.]
+#figura-15()
 
 Se é fato notório que a gestão se faz sobre a operação, infere-se, naturalmente, que o poder controlador precisa conhecer, perfeitamente bem, o elemento controlado. Daí decorre o princípio da especificidade da gestão, ou da especialização do controle. É certo, portanto, falar em controle contábil, financeiro, de qualidade (aspectos técnicos, da operação), administrativo, etc. Infere-se, também, que o elemento controlador (o regulador) precisa conhecer, igualmente bem, o elemento operado (sistema físico).
 
@@ -220,7 +222,7 @@ Como se vê, o relacionamento entre os especialistas, os generalistas e os siste
 
 Existe, dessarte, uma relação funcional explícita, decrescente, entre as variáveis que representam, no mesmo processo de medida do conhecimento humano, os Índices de contribuição do que é específico e do que é geral. Tal relação é passível de representação matemática através de um modelo da forma Y = f (X), de imagem cartesiana como a da figura 16, na qual a envolvente pode ser tomada como a Curva do Conhecimento Humano.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 16 — Curva do Conhecimento Humano*\ Gráfico cartesiano com eixo vertical denominado GENERALIZAÇÃO e eixo horizontal denominado ESPECIALIZAÇÃO. A curva é decrescente e hiperbólica, com duas assíntotas, representando a relação inversa entre generalização e especialização no conhecimento humano.]
+#figura-16()
 
 Examinando-se a natureza dessa curva, especialmente quanto à existência de duas assíntotas, verifica-se que para cada acréscimo dx ocorre uma redução dy, e que, para valores infinitos de X e de Y, a especialização e a generalização assumem, respectivamente, valores absolutos. Em consequência, é de se admitir que:
 
@@ -234,7 +236,7 @@ Enquanto não se destruiu o mito da especialização exacerbada — etiologia da
 
 Para encerrar, apresentamos, na figura 17, o quadro elaborado por Fayol#footnote[_Henry Fayol, Administração Industrial e Geral, p. 24._] para mostrar a importância, relativa, da especialização no exercício de função técnica em uma empresa industrial.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 17 — Capacidade necessária do pessoal de função técnica de uma grande empresa*\ Quadro elaborado por Fayol (Ensino Administrativo). Gráfico de barras horizontais segmentadas mostrando a proporção de diferentes capacidades (Administrativa, Técnica, Comercial, Financeira, De Segurança, De Contabilidade) para cada cargo: Diretor, Chefe do Serviço Técnico, Chefe de Divisão, Chefe de Oficina, Contramestre e Operário. À medida que o cargo é mais elevado, maior é a parcela administrativa; à medida que o cargo é mais operacional, maior é a parcela técnica.]
+#figura-17()
 
 A correlação entre a concepção de Fayol, os níveis de pilotagem e a dosagem especialista/generalista aparece nitidamente, ao mais superficial exame. Deixamos por conta do leitor um exame mais acurado, sob os três enfoques citados, certo de que há, ainda, muita inferência interessante a ser extraída.
 
@@ -244,7 +246,7 @@ A aplicação dos princípios de pilotagem até agora estudados — operação e
 
 Consideremos, agora, para efeito didático, que o modelo teria, através da evolução, superado a dificuldade, apresentando-se com a estrutura da figura 18, a que daremos o nome de "modelo evoluído".
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 18 — O Modelo Evoluído*\ Diagrama cibernético com dois níveis de pilotagem e um componente de Evolução. O Sistema de Gestão (à direita) é composto por Controle e Regulação, conectado ao Sistema Físico (centro-esquerda), que interage com o Universo Exterior (esquerda). Acima, um Objetivo Evoluído (OE, representado por um círculo com ponteiro) recebe informações e está ligado ao bloco Evolução (à direita), que retroalimenta o Sistema de Gestão. O fluxo de Informações sobe verticalmente do Sistema de Gestão ao OE. VE indica as Variáveis Essenciais que fluem entre o Sistema Físico e o Sistema de Gestão.]
+#figura-18()
 
 O "modus faciendi" da evolução do modelo constituirá objeto da análise que faremos do 3º nível de pilotagem.
 
@@ -260,7 +262,7 @@ Voltemos à ameba — a eterna ameba! — exemplo de pilotagem no nível único,
 
 Dos primeiros organismos vivos que habitaram a face da terra, a ameba continua apresentando, até hoje, a mesma constituição física e o mesmo desempenho fisiológico de seus ancestrais primevos. Em termos de evolução biológica, nada, absolutamente nada! A razão de continuar presente no contexto ecológico, perante o qual se apresenta, aparentemente, inerme e desprotegida, deve-se, como vimos, ao dom, que possui, de ir-se subdividindo toda vez que atinge a maturidade física.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 19 — 3º Nível de Pilotagem (EVOLUÇÃO)*\ Diagrama circular concêntrico representando o modelo de pilotagem em três níveis. No centro encontra-se o círculo menor com a sigla "S F"; em torno dele, sucessivamente, os anéis rotulados "I", "II" e "III". Sobre os anéis estão indicados, do centro para fora: "OPERAÇÃO / Op", "GESTÃO / Ge" e "EVOLUÇÃO / Ev".]
+#figura-19()
 
 Tais protozoários constituem o único exemplo de ser vivo, e a exceção confirma a regra, capaz de perdurar, eternamente, sem evoluir, e, não evoluem, pela simples razão de não possuírem ponte de ligação entre o primeiro e o terceiro nível de pilotagem. A inexistência de sistema nervoso, organizado, na estrutura física desses seres unicelulares não lhes propicia ir além do nível elementar, operação.
 
@@ -286,7 +288,7 @@ A constituição anatômica de um sensório cibernético#footnote[_O modelo de s
 
 Examinemos, em detalhe, os transdutores e o retículo anastomótico, os dois principais dispositivos da máquina sensória.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 20 — Sensório Cibernético*\ Diagrama do sensório cibernético composto por dois grupos de transdutores e duas placas (sensitiva e motora) interligadas por um retículo anastomótico. À direita, a "placa sensitiva" (parte de frente e parte de atrás) e a "placa motora". Ao centro, o "retículo anastomótico". À esquerda, dois grupos de elementos: acima, "Transdutores de saída (efetores)" com sigla "SIC = sensorial input channel" ligados à placa motora pelo "MOC" e por "Correntes de impulsos eferentes"; abaixo, "Transdutores de entrada (sensores)" com sigla "MOC = motor output channel" ligados à placa sensitiva pelo "SIC" e por "Correntes de impulsos aferentes".]
+#figura-20()
 
 ===== Transdutor
 
@@ -330,7 +332,7 @@ Processada a função de transferência, a placa motora deflagra a ação, atrav
 
 A ação deflagrada atua, sobre o sistema operado, sob a forma de objetivos de evolução, os quais são, permanentemente, controlados, num processo de auto-regulação por feedback. Recordemos que Ge (2º nível) vale-se, também, do mecanismo de feedback em busca de auto-regulação. Agora, entretanto, o processo de auto-regulação é muito mais eficiente, pois tem o caráter de supletividade e complementaridade a que nos referimos antecipadamente. Dessarte é de esperar-se que a estabilidade do sistema seja atingida quaisquer que sejam as condições adversas sob as quais se apresente o universo exterior, pois, na medida em que ele, paulatinamente, vai-se adaptando às condições mutantes de UE, aprende e se torna cada vez mais apto para enfrentar a variedade proliferante.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 21 — Esquema de ultra-estabilidade de ASHBY*\ Diagrama com dois subsistemas principais dentro do "UNIVERSO EXTERIOR": o bloco "EVOLUÇÃO" (superior direito) conectado ao marcador OE (círculo superior esquerdo com seta e indicação "OE"), que recebe "Informações" do topo; e o "Sistema de gestão" (inferior direito), contendo os blocos CT, RG e SF interligados, com o marcador O (círculo inferior esquerdo com seta) recebendo VE da parte inferior. O bloco EVOLUÇÃO envia OE ao Sistema de gestão. Dentro do marcador OE há quatro pares de símbolos indicando comparação de objetivos.]
+#figura-21()
 
 A este homeostato cibernético dá-se o nome de "ESQUEMA ULTRA-ESTÁVEL DE ASHBY", em homenagem ao grande ciberneta inglês, William Ross Ashby. (Ver Fig. 21).
 
@@ -344,7 +346,7 @@ Dissemos que, "ao atuar sobre Ge, alterando planos de ação e programas, modifi
 
 Por envolver Ev, Mt sofre influência da atuação deste último sobre Ge, atuação que, não apenas, fiscaliza, mas, também, e principalmente, utiliza como base para seus prognósticos a respeito de futuro do sistema. Para tanto, o mero exercício da razão, dedutiva ou indutivamente, será insuficiente. Há necessidade de uma óptica mais profunda, que somente a intuição pode proporcionar.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 22 — 4º Nível de Pilotagem (MUTAÇÃO)*\ Diagrama de círculos concêntricos, do centro para a periferia: "Sistema Físico" (centro), I OPERAÇÃO, II GESTÃO, III EVOLUÇÃO, IV MUTAÇÃO (anel externo).]
+#figura-22()
 
 Mas, é lícito indagar, o exercício do 4º nível de pilotagem é condição imprescindível à sobrevivência do sistema?...
 
@@ -398,7 +400,7 @@ Recordemos que a cibernética adotou, como modelo de comunicação e controle, o
 
 Indo, de forma direta, ao propósito de recolher a maior quantidade possível de ensinamento, tendo como base o modelo neurofisiológico, façamos coincidir, sobre um corte vertical do sistema nervoso, os quatro níveis de pilotagem, conforme mostra a figura 23.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 23 — Modelo Neurofisiológico Cibernético*\ Diagrama do Modelo Neurofisiológico Cibernético. Representação vertical do sistema nervoso em corte, com os seguintes níveis hierárquicos, de cima para baixo: "Espaço Extra-Cortical — INTUIÇÃO" (nível 4º — Mutação); "CÓRTEX" (nível 3º — Evolução); "DIENCÉFALOS / GÂNGLIOS BASAIS" (nível 3º — Evolução); "PONTE/BULBO" (nível 2º — Gestão); "MEDULA" (nível 1º — Operação). Ao longo do eixo lateral esquerdo está o "Sistema Parassimpático" e ao direito o "Sistema Simpático", representados por linhas tracejadas. Setas bidirecionais verticais conectam os níveis intermediários. Uma esfera na base representa o corpo operacional.]
+#figura-23()
 
 Observe-se que há um eixo de comando central, que vai do córtex à base da medula, e um eixo de comando lateral, que se articula, funcionalmente, com o bulbo e a extensão medular, através de interoceptores.
 
@@ -428,15 +430,7 @@ O quarto nível, mutação, conforme evidenciado na figura 23, conta com reduzid
 
 Para encerrar este tópico, relativo à Anatomia da Pilotagem, apresentamos a figura 24, que nos parece ser a imbricação do modelo neurofisiológico com a organização empresarial. As conclusões — e há muitas, a serem extraídas — deixamos por conta do leitor.
 
-#block(fill: luma(245), inset: 1em, radius: 4pt)[*Figura 24 — Correspondência entre o Modelo Neurofisiológico e a estrutura da Empresa*\
-#table(
-  columns: 3,
-  [*MODELO NEUROFISIOLÓGICO*], [*NÍVEL*], [*EMPRESA*],
-  [Espaço extra-cortical — Córtex], [4º — MUTAÇÃO], [Conselho Administrativo (C Adm)],
-  [Espaço extra-cortical, Córtex, Diencéfalo, Gânglios Basais], [3º — EVOLUÇÃO], [Presidência — Vice-Presidência — Assessoria],
-  [Diencéfalo, Gânglios Basais, Bulbo, Ponte, Medula], [2º — GESTÃO], [Diretores],
-  [Ponte — Bulbo, Medula — Simpático, Parassimpático], [1º — OPERAÇÃO], [Gerências de Divisões e Serviços],
-)]
+#figura-24()
 
 ==== Os Críticos do Modelo
 
