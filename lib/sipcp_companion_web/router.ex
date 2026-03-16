@@ -18,6 +18,7 @@ defmodule SipcpCompanionWeb.Router do
     pipe_through :browser
 
     live "/", CompanionLive, :index
+    get "/tts", TtsController, :stream
   end
 
   # Other scopes may use custom stacks.

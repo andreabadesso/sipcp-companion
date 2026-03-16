@@ -4,6 +4,7 @@ defmodule SipcpCompanion.Conversations.Session do
 
   schema "sessions" do
     field :title, :string, default: "Nova conversa"
+    field :summary, :string
     has_many :messages, SipcpCompanion.Conversations.Message
 
     timestamps()
@@ -11,6 +12,6 @@ defmodule SipcpCompanion.Conversations.Session do
 
   def changeset(session, attrs) do
     session
-    |> cast(attrs, [:title])
+    |> cast(attrs, [:title, :summary])
   end
 end

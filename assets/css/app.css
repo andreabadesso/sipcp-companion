@@ -241,6 +241,11 @@
 }
 
 /* ── Thinking dots ── */
+.loading-overlay {
+  background: linear-gradient(135deg, var(--parchment-deep) 0%, var(--cream) 100%);
+  border: 2px dashed var(--gold);
+}
+
 .thinking-dots span {
   display: inline-block;
   width: 8px;
@@ -278,6 +283,31 @@
   outline: none;
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(196, 149, 106, 0.2);
+}
+
+/* ── Compact sound wave for inline mic ── */
+.sound-wave-sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 16px;
+}
+
+.sound-wave-sm .bar {
+  width: 3px;
+  border-radius: 1.5px;
+  background: rgba(255, 255, 255, 0.9);
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.sound-wave-sm .bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+.sound-wave-sm .bar:nth-child(2) { height: 12px; animation-delay: 0.2s; }
+.sound-wave-sm .bar:nth-child(3) { height: 6px; animation-delay: 0.4s; }
+
+/* ── Safe area for mobile bottom bar ── */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* ── Fade-in for messages ── */

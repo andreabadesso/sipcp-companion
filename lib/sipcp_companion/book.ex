@@ -28,9 +28,10 @@ defmodule SipcpCompanion.Book do
         end)
 
       {:error, _} ->
-        # Fallback to simple text search
         text_search(query, limit)
     end
+  rescue
+    _ -> []
   end
 
   def text_search(query, limit) do
@@ -39,10 +40,13 @@ defmodule SipcpCompanion.Book do
     Page
     |> where([p], ilike(p.content, ^like))
     |> limit(^limit)
+    |> select([p], %{page_number: p.page_number, section: p.section, content: p.content})
     |> Repo.all()
     |> Enum.map(fn p ->
       %{content: p.content, page: p.page_number, section: p.section}
     end)
+  rescue
+    _ -> []
   end
 
   def ingest_markdown(markdown_content) do

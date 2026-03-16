@@ -1,19 +1,45 @@
 /**
- * Web Speech API hooks for SIPCP Companion.
- * Uses browser-native STT/TTS — zero server-side audio processing.
- * Optimized for elderly users: slow speech rate, clear voice, pt-BR.
+ * Speech hooks for SIPCP Companion.
+ * STT: Browser Web Speech API (pt-BR)
+ * TTS: ElevenLabs via server-side streaming endpoint
  */
 
 export const SpeechHook = {
   mounted() {
     this.recognition = null
-    this.synthesis = window.speechSynthesis
     this._isListening = false
+    this._audioEl = null
 
-    // Pre-load voices (Chrome loads them async)
-    if (this.synthesis) {
-      this.synthesis.getVoices()
-      window.speechSynthesis.onvoiceschanged = () => this.synthesis.getVoices()
+    // Log available audio devices
+    if (navigator.mediaDevices) {
+      navigator.mediaDevices.enumerateDevices().then(devices => {
+        const mics = devices.filter(d => d.kind === "audioinput")
+        console.log("[SIPCP] Available microphones:", mics.length)
+        mics.forEach((m, i) => console.log(`[SIPCP]   ${i}: ${m.label || "unnamed"} (${m.deviceId.slice(0,8)}...)`))
+      })
+
+      // Request mic access using the Chrome-selected default device
+      navigator.mediaDevices.enumerateDevices().then(devices => {
+        // Find the device Chrome settings selected (AirPods or whatever is default)
+        const airpods = devices.find(d => d.kind === "audioinput" && d.label.includes("AirPods"))
+        const defaultMic = devices.find(d => d.kind === "audioinput" && d.deviceId === "default")
+        const preferred = airpods || defaultMic
+
+        const constraints = preferred
+          ? { audio: { deviceId: { exact: preferred.deviceId } } }
+          : { audio: true }
+
+        console.log("[SIPCP] Requesting mic:", preferred?.label || "system default")
+
+        return navigator.mediaDevices.getUserMedia(constraints)
+      })
+        .then(stream => {
+          const track = stream.getAudioTracks()[0]
+          console.log("[SIPCP] Active mic:", track.label, "| settings:", JSON.stringify(track.getSettings()))
+          // Keep stream open so Chrome doesn't switch back
+          this._micStream = stream
+        })
+        .catch(err => console.error("[SIPCP] Mic access error:", err.message))
     }
 
     // Setup Speech Recognition (STT)
@@ -25,19 +51,26 @@ export const SpeechHook = {
       this.recognition.interimResults = true
 
       this.recognition.onresult = (event) => {
-        const last = event.results[event.results.length - 1]
-        if (last.isFinal) {
-          const text = last[0].transcript.trim()
-          if (text) {
-            console.log("[SIPCP] Voice captured:", text)
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const result = event.results[i]
+          const text = result[0].transcript.trim()
+          const confidence = result[0].confidence
+          console.log(`[SIPCP] Result: "${text}" (final: ${result.isFinal}, confidence: ${confidence})`)
+          if (result.isFinal && text) {
+            console.log("[SIPCP] Voice captured (final):", text)
             this.pushEvent("voice_text", { text })
           }
         }
       }
 
+      this.recognition.onaudiostart = () => console.log("[SIPCP] Audio capture started — mic is active")
+      this.recognition.onaudioend = () => console.log("[SIPCP] Audio capture ended")
+      this.recognition.onspeechstart = () => console.log("[SIPCP] Speech detected!")
+      this.recognition.onspeechend = () => console.log("[SIPCP] Speech ended")
+      this.recognition.onnomatch = () => console.log("[SIPCP] No match found")
+
       this.recognition.onerror = (event) => {
         console.log("[SIPCP] Speech error:", event.error)
-        // Only stop listening on real errors, not transient ones
         if (event.error === "not-allowed" || event.error === "service-not-available") {
           this._isListening = false
           this.pushEvent("toggle_listen", {})
@@ -47,7 +80,6 @@ export const SpeechHook = {
 
       this.recognition.onend = () => {
         console.log("[SIPCP] Recognition ended, listening:", this._isListening)
-        // Auto-restart if we should still be listening
         if (this._isListening) {
           setTimeout(() => {
             if (this._isListening && this.recognition) {
@@ -65,15 +97,14 @@ export const SpeechHook = {
       console.warn("[SIPCP] Speech Recognition not supported in this browser")
     }
 
-    // Listen for LiveView events to control voice
+    // Listen for LiveView events
     this.handleEvent("start_listening", () => this.startListening())
     this.handleEvent("stop_listening", () => this.stopListening())
 
-    // TTS: speak assistant responses
-    this.handleEvent("speak", ({ text }) => this.speak(text))
+    // TTS via ElevenLabs streaming endpoint
+    this.handleEvent("speak_url", ({ url }) => this.speakUrl(url))
   },
 
-  // Called after LiveView DOM patches — re-check state
   updated() {
     const btn = document.getElementById("voice-btn")
     if (btn) {
@@ -93,12 +124,14 @@ export const SpeechHook = {
     }
     if (this._isListening) return
 
+    // Stop any playing audio so mic doesn't pick it up
+    this.stopAudio()
+
     console.log("[SIPCP] Starting to listen...")
     this._isListening = true
     try {
       this.recognition.start()
     } catch(e) {
-      // Already started, that's fine
       console.log("[SIPCP] Start error (probably already running):", e.message)
     }
   },
@@ -111,29 +144,39 @@ export const SpeechHook = {
     }
   },
 
-  speak(text) {
-    if (!this.synthesis) return
+  speakUrl(url) {
+    // Stop any in-progress audio
+    this.stopAudio()
 
-    this.synthesis.cancel()
+    // Stop listening while TTS plays (avoid mic picking up speaker)
+    const wasListening = this._isListening
+    if (wasListening) this.stopListening()
 
-    const cleanText = text
-      .replace(/[#*_`~\[\]()]/g, "")
-      .replace(/\n+/g, ". ")
-      .slice(0, 2000)
+    const audio = new Audio(url)
+    audio.preload = "auto"
+    this._audioEl = audio
 
-    const utterance = new SpeechSynthesisUtterance(cleanText)
-    utterance.lang = "pt-BR"
-    utterance.rate = 0.85
-    utterance.pitch = 1.0
-    utterance.volume = 1.0
+    audio.onended = () => {
+      console.log("[SIPCP] TTS playback finished")
+      this._audioEl = null
+    }
 
-    const voices = this.synthesis.getVoices()
-    const ptVoice = voices.find(v => v.lang === "pt-BR") ||
-                    voices.find(v => v.lang.startsWith("pt-BR")) ||
-                    voices.find(v => v.lang.startsWith("pt"))
-    if (ptVoice) utterance.voice = ptVoice
+    audio.onerror = (e) => {
+      console.error("[SIPCP] TTS audio error:", e)
+      this._audioEl = null
+    }
 
-    this.synthesis.speak(utterance)
+    audio.play().catch(e => {
+      console.warn("[SIPCP] Autoplay blocked:", e.message)
+    })
+  },
+
+  stopAudio() {
+    if (this._audioEl) {
+      this._audioEl.pause()
+      this._audioEl.src = ""
+      this._audioEl = null
+    }
   },
 
   destroyed() {
@@ -141,9 +184,7 @@ export const SpeechHook = {
     if (this.recognition) {
       try { this.recognition.stop() } catch(e) {}
     }
-    if (this.synthesis) {
-      this.synthesis.cancel()
-    }
+    this.stopAudio()
   }
 }
 

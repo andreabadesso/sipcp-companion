@@ -33,4 +33,11 @@ defmodule SipcpCompanion.Conversations do
     |> order_by(asc: :inserted_at)
     |> Repo.all()
   end
+
+  def update_session_summary(session_id, summary) do
+    Session
+    |> Repo.get!(session_id)
+    |> Session.changeset(%{summary: summary})
+    |> Repo.update()
+  end
 end

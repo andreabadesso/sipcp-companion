@@ -43,6 +43,15 @@ config :tailwind,
     cd: Path.expand("..", __DIR__)
   ]
 
+# ElevenLabs TTS
+config :sipcp_companion, :elevenlabs,
+  voice_id: "nPczCjzI2devNBz1zQrb",
+  model_id: "eleven_turbo_v2_5",
+  stability: 0.15,
+  similarity_boost: 0.60,
+  style: 0.0,
+  use_speaker_boost: false
+
 # Configure Elixir's Logger
 config :logger, :default_formatter,
   format: "$time $metadata[$level] $message\n",

@@ -8,11 +8,14 @@ defmodule SipcpCompanion.AI.Agent do
 
   alias SipcpCompanion.AI.Claude
   alias SipcpCompanion.Book
+  alias SipcpCompanion.Conversations
 
   defstruct [
     :session_id,
+    :db_session_id,
     :live_view_pid,
     messages: [],
+    current_response: "",
     book_context: nil
   ]
 
@@ -37,6 +40,7 @@ defmodule SipcpCompanion.AI.Agent do
   def init(opts) do
     state = %__MODULE__{
       session_id: Keyword.fetch!(opts, :session_id),
+      db_session_id: Keyword.get(opts, :db_session_id),
       live_view_pid: Keyword.fetch!(opts, :live_view_pid)
     }
 
@@ -60,24 +64,74 @@ defmodule SipcpCompanion.AI.Agent do
       system: system_prompt_with_context(context)
     )
 
-    {:noreply, %{state | messages: messages, book_context: context}}
+    {:noreply, %{state | messages: messages, current_response: "", book_context: context}}
   end
 
   @impl true
   def handle_info({:ai_delta, text}, state) do
     send(state.live_view_pid, {:ai_delta, text})
-    {:noreply, state}
+    {:noreply, %{state | current_response: state.current_response <> text}}
   end
 
   @impl true
   def handle_info(:ai_done, state) do
+    response = state.current_response
+
+    # Store assistant reply in conversation history for multi-turn coherence
+    messages = state.messages ++ [%{role: "assistant", content: response}]
+
     send(state.live_view_pid, :ai_done)
-    {:noreply, state}
+
+    # Condense conversation if it's getting long
+    messages = maybe_condense(messages, state)
+
+    {:noreply, %{state | messages: messages, current_response: ""}}
   end
 
   @impl true
   def handle_call(:get_history, _from, state) do
     {:reply, state.messages, state}
+  end
+
+  # --- Condensation ---
+
+  # Keep last 6 messages (3 turns) + a summary of older ones
+  @max_messages 10
+
+  defp maybe_condense(messages, _state) when length(messages) <= @max_messages, do: messages
+
+  defp maybe_condense(messages, state) do
+    # Split: older messages to summarize, recent to keep
+    keep_count = 6
+    {old, recent} = Enum.split(messages, length(messages) - keep_count)
+
+    summary = condense_messages(old)
+
+    # Persist summary to DB if we have a db_session_id
+    if state.db_session_id do
+      Conversations.update_session_summary(state.db_session_id, summary)
+    end
+
+    [%{role: "user", content: "[Resumo da conversa anterior]: #{summary}"}] ++ recent
+  end
+
+  defp condense_messages(messages) do
+    conversation =
+      messages
+      |> Enum.map(fn %{role: role, content: content} ->
+        label = if role == "user", do: "Professor", else: "Assistente"
+        "#{label}: #{String.slice(content, 0, 200)}"
+      end)
+      |> Enum.join("\n")
+
+    case Claude.chat(
+           [%{role: "user", content: "Resuma esta conversa em 2-3 frases em português:\n\n#{conversation}"}],
+           system: "Você é um assistente que resume conversas de forma concisa em português brasileiro.",
+           max_tokens: 200
+         ) do
+      {:ok, summary} -> summary
+      {:error, _} -> "Conversa anterior sobre o livro SIPCP."
+    end
   end
 
   # --- Private ---
