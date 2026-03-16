@@ -1,0 +1,5 @@
+## 2.4. Energia e Entropia
+
+A integração sistêmica entre os campos do saber exige dos físicos, dos biólogos, dos matemáticos, dos economistas, dos administradores, enfim, de todos aqueles que fazem pesquisa pura e aplicada, o uso de uma linguagem comum, universal, com soi ser a ciência contemporânea. Isto, em certos casos, tem sido feito, ainda, com certa dificuldade, por se tratar de uma postura nova para o espírito humano, como vimos na introdução a este capítulo II. E é precisamente o que tem ocorrido com os conceitos de energia, entropia e informação.
+
+Para o pensamento ortodoxo, energia e entropia eram conceitos situados no campo das ciências ditas exatas, particularmente a Física, enquanto que o conceito de informação permanecia adstrito ao campo das ciências humanas e sociais. Nesta fase de consolidação do pensamento sistêmico, é comum notar-se uma certa insegurança no uso da acepção comum de energia e entropia por parte de pessoas pouco versadas em ciências exatas; por outro lado, a recíproca é verda

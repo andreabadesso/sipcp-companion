@@ -1,0 +1,5 @@
+deira: estas últimas relutam em aceitar a mensuração das informações, como o quer a acepção cibernética do termo, habituadas que estão em quantificar suas variáveis com valores aferíveis objetivamente através de modelos matemáticos canônicos.
+
+Entropia é palavra composta de um prefixo latino e um radical grego: do Latim: "en" que significa "passagem para um estado ou forma", e do grego "tropos", que significa "volta, giro, mudança". Etimologicamente, portanto, a palavra tem a acepção de volta a um estado, ou forma, pré-existente (se não existisse um estado anterior, não haveria volta)...
+
+O conceito encaixa-se, com perfeição, no princípio geral da degradação da energia que é consequência do Princípio de Carnot: "em um sistema isolado, as transformações de energia tendem a realizar um equilíbrio térmico estável, em que se torna impossível qualquer fenômeno". Ou seja, o calor, em um sistema isolado, satisfaz uma de duas condições mutuamente exclusivas: está igualmente distribuído por todas as regiões do

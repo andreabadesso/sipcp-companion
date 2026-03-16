@@ -1,0 +1,3 @@
+Figura 20 – Sensório Cibernético
+
+> **[Figura 20 — Diagrama do sensório cibernético composto por dois grupos de transdutores e duas placas (sensitiva e motora) interligadas por um retículo anastomótico. À direita, a "placa sensitiva" (parte de frente e parte de atrás) e a "placa motora". Ao centro, o "retículo anastomótico". À esquerda, dois grupos de elementos: acima, "Transdutores de saída (efetores)" com sigla "SIC = sensorial im put channel" ligados à placa motora pelo "MOC" e por "Correntes de impulsos eferentes"; abaixo, "Transdutores de entrada (sensores)" com sigla "MOC = motor out put channel" ligados à placa sensitiva pelo "SIC" e por "Correntes de impulsos aferentes".]**

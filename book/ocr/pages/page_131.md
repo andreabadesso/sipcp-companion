@@ -1,0 +1,5 @@
+delo constituirá objeto da análise que faremos do 3º nível de pilotagem.
+
+Recordemos, ainda, que, anteriormente, assim nos referimos à preocupação do modelo quanto a formulação de possíveis estratégias de proteção: "o ideal seria que os sistemas de gestão fossem projetados com uma reserva de capacidade que lhes permitisse fazer face a quaisquer perturbações ambientais, mas já vimos que, na prática, isto é impossível por não ser economicamente viável. Tantos os sistemas artificialmente criados, como os sistemas naturais, são arquitetados para correr um risco calculado; tal é a razão pela qual, todos eles, naturais e artificiais, desenvolvem mecanismo sensórios de captação, o mais aprioristicamente possível, de estímulos aferentes nociceptivos, os quais serão analisados, em tem útil, para a formulação de estratégias destinadas à proteção do sistema"...
+
+Examinando o modelo evoluído (Fig. 18), vemos que sua estrutura conta, agora, com um novo bloco, EVOLUÇÃO (Ev), cuja função é atuar sobre Ge deflagrando duas for

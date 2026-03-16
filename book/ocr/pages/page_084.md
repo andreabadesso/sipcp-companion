@@ -1,0 +1,5 @@
+— portanto, a entropia absorvida por um sistema para a realização de cada transformação é medida em unidades negativas do logaritmo base dois da variedade, ou em unidades positivas de negentropia (que equivale a informação e a energia). Esta é a mais importante constatação feita pela Teoria da Informação, e corresponde, como vimos, à quantificação do esforço a ser realizado pelo sistema para a consecução do propósito atual que lhe foi atribuído.
+
+Cumpre, ainda, esclarecer um aspecto que deverá estar causando certa dúvida no espírito do leitor, por ter sido encontrado um valor fracionário (decimal) para o número de transições efetuadas pela máquina de determinar cartas de baralho: certeza = Log₂ 1/40 = -5, 32; o mesmo que -(-5,32) unidades de negentropia.
+
+As 5, 32 unidades de informação (negentropia, energia) consumidas na realização de 5, 32 transições indicam que o sistema, embora tenha completado a 5ª transição, não precisou realizar totalmente a 6ª. Examinando, atentamente, o quadro de operações

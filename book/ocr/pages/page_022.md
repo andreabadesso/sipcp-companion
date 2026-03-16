@@ -1,0 +1,5 @@
+de um problema empresarial, típico desta era de crescimento rápido e desordenado da economia nacional: a crise de crescimento da ALPHA — Implementos Industriais SA, empresa hipoteticamente criada, mas que guarda quase total analogia com suas congêneres da vida real.
+
+O primeiro congresso internacional de cibernética realizou-se em Estocolmo, há quase três décadas. Apesar de ser, como já dissemos, uma ciência jovem, seus efeitos práticos são, particularmente, notáveis. Infelizmente, no Brasil, a cibernética tem pouca divulgação, não fazendo parte das disciplinas curriculares de nenhum curso de administração, economia, ciências contábeis ou engenharia de nossas faculdades. Talvez, por essa razão, aliada a uma certa dose de resistência à mudança, alguns céticos das possibilidades da cibernética objetem, ao concluir a leitura desta obra, tratar-se de mais um "sonho de uma noite de verão".
+
+A estes, respondo com as palavras do mercenário idealista de Laterguy: "há muito sonho no homem de ação, e muita ação no homem que sonha..."

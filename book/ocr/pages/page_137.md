@@ -1,0 +1,5 @@
+delo circular de pilotagem é que Ev somente poderá atingir SF depois de atravessar Ge e Op. Esta é uma característica, do modelo, imposta pela lei da escassez, pois, sendo escassos os recursos da natureza, a economicidade torna-se um imperativo de sobrevivência. Enquanto o sistema físico for capaz de exercer seu papel, vegetativamente, não há porque investir em mudança. O fator necessidade é preponderante.
+
+Ev atingirá SF sempre que necessário, mas passo a passo, nunca por saltos ("natura non facit saltus", diziam os romanos). Ao atuar sobre Ge, alterando planos de ação e programas, modificando VA, enfim, na medida em que submete Ge a um exame crítico, Ev vai criando na organização as motivações que irão suscitar o interesse pelo desenvolvimento organizacional, que é, em última análise, o princípio motor e inteligente da evolução. Pouco, muito pouco, é obra do acaso.
+
+Para o completo entendimento do "modus faciendi" da evolução, resta, finalmente, examinar aquilo que denominamos de meca

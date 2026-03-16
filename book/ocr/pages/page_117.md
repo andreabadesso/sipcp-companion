@@ -1,0 +1,1 @@
+> **[Figura 14 — Organograma da Empresa com órgão de assessoria (CONTROLLER). O organograma mostra o PRESIDENTE no centro-direita, com quatro departamentos à esquerda: PRODUÇÃO, VENDAS, FINANÇAS e PESSOAL, todos ligados ao PRESIDENTE por linhas hierárquicas. O CONTROLLER aparece abaixo do PRESIDENTE, ligado a ele por linha de assessoria.]**

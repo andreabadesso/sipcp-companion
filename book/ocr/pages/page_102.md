@@ -1,0 +1,5 @@
+A resposta é, intuitivamente, não! Voltemos a pensar no exemplo da aeronave e sua tripulação...
+
+O tempo apresenta-se bom, as condições de funcionamento da aeronave são normais, os passageiros estão tranquilos. O comandante liga o piloto automático e refestela-se em sua poltrona para ler o jornal do dia. A campainha de alerta soa na cabine: o radar — mecanismo sensório de captação de estímulos aferentes nociceptivos — detecta a ocorrência de turbulências na aerovia, a alguns minutos de vôo. O navegador, analisando o sinal de alerta, informa o comandante sobre a impossibilidade de passar por cima ou por baixo da turbulência. Ela tem que ser atravessada! O comandante retoma os controles da aeronave, pois sabe que o piloto-automático, sob condições meteorológicas mais severas, é ineficiente.
+
+A aeronave atinge a região de turbulência. A tripulação empenha-se, fazendo uso de toda a perícia, habilidade e sangue frio de que é dotada, em neutralizar os efeitos desestabilizadores das fortes correntes

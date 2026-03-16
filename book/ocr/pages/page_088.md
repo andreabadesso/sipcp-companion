@@ -1,0 +1,1 @@
+carburador. E isto se faz com prejuízo para seu funcionamento. Da mesma forma uma empresa, superorganizada, abrigará chefias ociosas, que tenderão a considerar o planejamento um fim em si mesmo, desprezando as reais atividades-fim.

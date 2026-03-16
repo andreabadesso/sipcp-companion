@@ -1,0 +1,5 @@
+presarial de forma a impelir a curva das possibilidades de produção para as proximidades do ponto de locação das satisfações humanas, única resposta cabal ao grave desafio do presente.
+
+Dentro dessa ordem de idéias — formulação de estratégias de ação apriorístico — desenvolveu-se, neste trabalho, a metodologia a que se deu, talvez presunçosamente, o título de "SISTEMA" INTEGRADO DE PROGRAMAÇÃO E CONTROLE DE PRODUÇÃO — Um modelo cibernético de administração industrial, que visa a instituir, no organismo empresarial, um sistema físico de produção, ciberneticamente operado por um sistema de gestão administrativo de concebido.
+
+A obra desenvolve-se em duas partes. Na primeira — ELEMENTOS DE CIBERNÉTICA — são feitas rápidas incursões nos domínios puros desta jovem ciência, visando a familiarizar o leitor com os termos e conceitos que lhe darão acesso ao novo instrumental de otimização da performance empresarial. Na segunda parte — CIBERNÉTICA APLICADA À ADMINISTRAÇÃO INDUSTRIAL — a ciência pura, teórica, terá aplicação prática na solução

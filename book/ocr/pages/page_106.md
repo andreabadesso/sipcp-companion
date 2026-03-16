@@ -1,0 +1,11 @@
+de de medida da evolução pode muito bem basear-se numa geração. Cada um de nós considera-se testemunha ocular daquilo que, metaforicamente, chamamos de "sinal dos tempos": a rápida evolução dos usos e costumes. Mas, nenhum de nós presenciou ou presenciará, com toda a certeza, qualquer tipo de mutação (excluídas as causadas por acidentes genéticos). Isto porque a evolução se faz sentir diretamente sobre o comportamento da espécie (variável de SG), enquanto que a mutação se faz sentir sobre o arcabouço físico da espécie (variável de SF).
+
+A História Universal costuma ser escrita tendo como enfoque a evolução do pensamento humano, mas a História Natural, de que o transformismo é uma das concorrentes mais respeitáveis, baseia-se nas mutações genéticas para descrever a cadeia evolutiva. Os arquivos da História Universal registram ocorrências que distam, na escala temporal, não mais de meia centena de séculos; os da História Natural escondem-se sob a poeira de dezenas de milhões de anos.
+
+Toda esta digressão foi feita para ressaltar uma importante condição dos sistemas artificiais — especialmente a EMPRESA — que contrasta, nesse particular, com os sistemas orgânicos: as perturbações ambientais, salvo os grandes cataclismos, não afetam, drasticamente, as espécies; antes, mesmo, excitam-lhes o funcionamento do mecanismo adaptativo, queimando algumas etapas da consecução, a longo prazo, do binômio evolução-mutação. O mesmo não ocorre, entretanto, com a empresa, pois, dela, quer-se adaptação a curto prazo, com respostas, às vezes, até mesmo antecipativas. Isto é, não podem mudar com a serenidade e a fleuma dos organismos vivos; têm de projetar, na tela do presente, a sua resposta — mutação rigorosamente certa — sob pena de se verem alijadas do painel do futuro.
+
+Agora, estamos mais capacitados para diagnosticar a "causa mortis" de nosso modelo cibernético de administração industrial: "disfunção de SG, caracterizada por uma manifesta incapacidade de adaptar-se às condições ambientais adversas, sucumbindo à entropia alimentada pela variedade proliferante"....
+
+---
+
+*(Continuação da pág. anterior)* atual do organismo ao desejo insatisfeito, que somente com a criação do órgão sentir-se-á saciado plenamente — uma espécie de paliativo — consiste na metergia, isto é, adaptação de um órgão a novas funções.

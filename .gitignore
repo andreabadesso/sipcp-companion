@@ -44,6 +44,9 @@ npm-debug.log
 # Generated PDFs (rebuild via book/scripts/)
 /book/pdf/
 
+# Temp working files (extracted page images, etc.)
+/book/.tmp/
+
 # Nix
 .nix-postgres/
 .direnv/

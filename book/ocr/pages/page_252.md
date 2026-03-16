@@ -1,0 +1,5 @@
+ca do adolescente transmutado no vibrante cadete, os sólidos fundamentos de uma cultura científica, sistemática e organizada. Já como oficial, sob o regime espartano da caserna, no dia a dia de uma carreira em que os sacrifícios se compensam pelo sentimento do dever cumprido perante o altar da Pátria, aprendi, talvez, a maior lição de minha vida: a de que é mais importante dar de si do que pensar em si!
+
+A Universidade do Amazonas, onde me graduei em Administração de Empresas e Ciências Contábeis, e onde, hoje, realizo o pós-graduação em contabilidade gerencial, devo, pela qualidade do ensino ministrado e pelo exemplo frutificante de seus mestres, sempre devotados às nobres causas do bem comum, a motivação e o apoio sem o qual teria sido impossível aceitar e vencer este grande desafio.
+
+No mundo de hoje, em que as fronteiras políticas vêm sendo subrepticiamente transpostas pelas corporações multinacionais, a soberania das nações não se garante mais, unicamente, pelas normas do Direito Internacional: precisa ser reconquistada, de

@@ -1,0 +1,3 @@
+Figura 5 — PRAXEOGRAMA OPERATÓRIO DO NOVO SISTEMA
+
+> **[Figura 5 — Praxeograma operatório do novo sistema: diagrama com quatro blocos dispostos em quadrado. No canto superior esquerdo, bloco "PRODUÇÃO"; no canto superior direito, bloco "GESTÃO"; no canto inferior esquerdo, bloco "ESTOQUE"; no canto inferior direito, bloco "VENDAS". Setas sólidas e tracejadas indicam o fluxo entre os blocos: de GESTÃO para PRODUÇÃO (seta tracejada e seta sólida apontando para a esquerda); de PRODUÇÃO para ESTOQUE (seta sólida e tracejada apontando para baixo); de ESTOQUE para VENDAS (seta tracejada e seta sólida apontando para a direita); de VENDAS para GESTÃO (seta sólida e tracejada apontando para cima).]**

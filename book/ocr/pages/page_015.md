@@ -1,0 +1,5 @@
+do o comportamento finalista dos seres vivos, interagem e se inter-relacionam sinergicamente face a propósitos teleonômicos comuns, finalidade da organização em termos de realização plena de seu projeto.
+
+O curioso a registrar da obra de Huxley é que, ao escrevê-la, seu intento era de desagravar a Ciência, que pensava estar destruindo os valores humanos e políticos; paradoxalmente, entretanto, colocou no governo do admirável mundo novo um Estado totalitário, organizado sob a égide da Ciência, em que o discernimento e o livre-arbítrio foram completamente erradicados da mente de seus habitantes.
+
+A idéia básica de Huxley — um mundo sistêmico, regido por leis universais que atuam de forma comum nos campos animados e inanimados, uma espécie de mecanismo biológico — teve motivação mais filosófica do que científica. Sua obra dista de 1932, e creio que Viener e Bertalanffy, que trataram da questão sob um enfoque eminentemente científico, sem desprezar, entretanto, o conteúdo filosófico que lhe é inerente, de

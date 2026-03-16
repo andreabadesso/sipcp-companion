@@ -1,0 +1,5 @@
+Consideramos ser a intuição produto da sensibilidade intelectual do homem, pois, embora não nasça nele, penetra-lhe a espiritualidade através do filtro sutil do pensamento lógico e se consubstancia, toma forma, no exame crítico da razão pura. Por isso é que grande parte do conhecimento humano provém da intuição a priori confirmada e corporificada pelo raciocínio a posteriori. No uso inteligente da intuição reside a diferença marcante entre o homem e os animais irracionais. O ser irracional, incapaz de elaborar inteligentemente o produto da intuição, desperdiça-o, degrada-o, reduz-lo à condição de simples e elementar faro.
+
+Falar da inspiração do poeta, do descortino do estadista, da visão do empresário, constitui desnecessária tautologia pois nada mais representam que sinônimos da mesma palavra: INTUIÇÃO.
+
+Para a Cibernética a intuição tem grande importância, pois, a partir de certo nível de pilotagem, o racional torna-se incapaz de, sozinho, discernir os rumos a serem imprimidos aos sistemas. Desse patamar, a intuição, como um poderoso radar,

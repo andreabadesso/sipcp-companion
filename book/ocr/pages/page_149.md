@@ -1,0 +1,1 @@
+> **[Figura 22 — 4º Nível de Pilotagem (MUTAÇÃO). Diagrama de círculos concêntricos, do centro para a periferia: "Sistema Físico" (centro), I OPERAÇÃO, II GESTÃO, III EVOLUÇÃO, IV MUTAÇÃO (anel externo).]**

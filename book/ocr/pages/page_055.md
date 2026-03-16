@@ -1,0 +1,5 @@
+renemente. Já os propósitos atuais variam com as necessidades imediatas de cada sistema e se traduzem em metas e objetivos cuja conquista e preservação, no tempo e no espaço, irá depender da dinâmica própria do sistema considerado. Interessante exemplo de tais propósitos oferece-nos a Ciência Política, no que concerne aos Objetivos Nacionais, atuais (ONA) e permanentes (ONP).
+
+As nações, como sistemas políticos, têm, como ONP: Integridade Territorial, Integração Nacional, Progresso, Paz Social e Soberania. Já os ONA poderão, ou não, ser: combate à inflação, desenvolvimento do setor terciário da economia, contenção (ou estímulo) da natalidade etc.
+
+O propósito permanente — sobrevivência a longo prazo, se possível perenemente — encontra respaldo, como acabamos de ver, na capacidade que o sistema precisa ter de evoluir no contexto da espécie, evolução que afeta, positivamente, as metas e objetivos atuais do sistema. Tal a razão pela qual se traçarmos a imagem cartesiana da vida de um sistema detectaremos uma tendência, acentua

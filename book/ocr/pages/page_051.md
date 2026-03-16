@@ -1,0 +1,5 @@
+pronto a fazer novas exigências.
+
+Na empresa, que, como vimos, imita os sistemas orgânicos, as "Funções Essenciais", concebidas pelo gênio de Fayol, existem sempre, e o seu exercício é assegurado independentemente do fato de possuir, ou não, a estrutura organizacional órgãos destinados a exercê-las. Quando, porventura, ocorre alguma deficiência anatômica, a necessidade faz com que uma organização informal, invisível, superponha-se à organização formal e se incumba de suprir o desempenho funcional no nível mínimo imposto pelo contexto socieconômico no qual a empresa está inserida.
+
+Dessarte, para a Cibernética — repetimos para enfatizar — a pequena empresa, de estrutura organizacional aparentemente simples, é, na realidade, um sistema excessivamente complexo. No âmago dessesistema, pulsando com o frêmito de um coração insatisfeito, a estrutura invisível, ao mesmo tempo em que suplementa o desempenho da estrutura formal, anatomicamente deficiente, cria as motivações que irão suscitar o interesse pelo desenvolvimento organizacio

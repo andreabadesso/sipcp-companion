@@ -1,0 +1,5 @@
+Para um físico este é um sistema determinístico, pois traz implícito em sua estrutura o mecanismo capaz de garantir uma relação constante de causa e efeito, passível de ser representada por um modelo isomórfico. Para cada posição das bolas, mediante aplicação das leis de composição dos movimentos e do choque elástico, o modelo indicará, precisamente, através de um vetor, o "modus operandi" do sistema para o atingimento de seu propósito.
+
+Num emérito jogador de bilhar, o treinamento incumbiu-se de construir, em seu cérebro, idêntico modelo isomórfico. O jogador agirá instintivamente, guiado pelo "golpe de vista" que é uma resposta programada, para cada condição sucessiva do sistema na marcha em direção do objetivo. O sistema é, portanto, para o jogador que tem "confiança em seu taco", com toda a certeza, determinístico.
+
+Para um principiante, entretanto, que não tem empunhadura firme nem golpe de vista, pois seu cérebro ainda não teve tempo de munir-se das informações necessárias para programar-se, o sistema deverá ser consi

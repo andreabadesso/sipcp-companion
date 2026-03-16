@@ -1,0 +1,3 @@
+Figura 23 – Modelo Neurofisiológico Cibernético
+
+> **[Figura 23 — Diagrama do Modelo Neurofisiológico Cibernético. Representação vertical do sistema nervoso em corte, com os seguintes níveis hierárquicos, de cima para baixo: "Espaço Extra-Cortical — INTUIÇÃO" (nível 4º — Mutação); "CÓRTEX" (nível 3º — Evolução); "DIENCÉFALOS / GÂNGLIOS BASAIS" (nível 3º — Evolução); "PONTE/BULBO" (nível 2º — Gestão); "MEDULA" (nível 1º — Operação). Ao longo do eixo lateral esquerdo está o "Sistema Parassimpático" e ao direito o "Sistema Simpático", representados por linhas tracejadas. Setas bidirecionais verticais conectam os níveis intermediários. Uma esfera na base representa o corpo operacional.]**

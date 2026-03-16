@@ -1,0 +1,5 @@
+os da História Natural escondem-se sob a poeira de dezenas de milhões de anos.
+
+Toda esta digressão foi feita para ressaltar uma importante condição dos sistemas artificiais — especialmente a EMPRESA — que contrasta, nesse particular, com os sistemas orgânicos: as perturbações ambientais, salvo os grandes cataclismos, não afetam, drasticamente, as espécies; antes, mesmo, excitam-lhes o funcionamento do mecanismo adaptativo, queimando algumas etapas da consecução, a longo prazo, do binômio evolução-mutação. O mesmo não ocorre, entretanto, com a empresa, pois, dela, quer-se adaptação a curto prazo, com respostas, às vezes, até mesmo antecipativas. Isto é, não podem mudar com a serenidade e a fleuma dos organismos vivos; têm de projetar, na tela do presente, a sua resposta — mutação rigorosamente certa — sob pena de se verem alijadas do painel do futuro.
+
+Agora, estamos mais capacitados para diagnosticar a "causa mortis" de nosso modelo cibernético de administração industrial: "disfunção de SG, caracterizada por uma manifesta incapacidade de adaptar-se às condições ambientais adversas, sucumbindo à entropia alimentada pela variedade proliferante"....

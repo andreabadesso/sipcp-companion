@@ -1,0 +1,5 @@
+desenvolvidos, em termos de Cibernética — de quase três décadas! — e postula a criação, em nossas faculdades, da cadeira de "Cibernética e Sistemas", como um esforço adicional visando à transposição do perigoso fosso tecnológico que se antepõe, como uma barreira, aos nossos mais líbidos anseios de progresso econômico e social. E o que, em sã consciência, me diz a experiência haurida durante quase toda uma existência devotada ao serviço público e ao magistério superior.
+
+SISTEMA INTEGRADO DE PROGRAMAÇÃO E CONTROLE DA PRODUÇÃO — Um modelo cibernético de administração industrial, não é uma obra de leitura fácil, mas quem o fizer sentir-se-á, certamente, recompensado pelo tempo empregado. Os críticos do modelo, estes terão, também, com toda certeza, encontrado respostas convincentes para questões que, antes, lhes alimentavam o ceticismo quanto à viabilidade das aplicações da cibernética na administração industrial: o conceito de entropia, transposto da termodinâmica para a teoria da informação; a analogia entre o modelo neurofisiológico animal e a empresa, uma antevisão de Fayol operacionalizada pe
+
+17

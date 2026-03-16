@@ -1,0 +1,5 @@
+bitaram a face da terra, a ameba continua apresentando, até hoje, a mesma constituição física e o mesmo desempenho fisiológico de seus ancestrais primevos. Em termos de evolução biológica, nada, absolutamente nada! A razão de continuar presente no contexto ecológico, perante o qual se apresenta, aparentemente, inerme e desprotegida, deve-se, como vimos, ao dom, que possui, de ir-se subdividindo toda vez que atinge a maturidade física.
+
+Tais protozoários constituem o único exemplo de ser vivo, e a exceção confirma a regra, capaz de perdurar, eternamente, sem evoluir, e, não evoluem, pela simples razão de não possuírem ponte de ligação entre o primeiro e o terceiro nível de pilotagem. A inexistência de sistema nervoso, organizado, na estrutura física desses seres unicelulares não lhes propicia ir além do nível elementar, operação.
+
+Sem intenção de polemizar, mas por contrariar, frontalmente, princípios de cibernética, não podemos deixar de expender algumas considerações a respeito do seguim

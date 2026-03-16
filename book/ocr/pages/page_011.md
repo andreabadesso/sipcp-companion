@@ -1,0 +1,5 @@
+ção sistemica de todos os campos do saber, ajusta-se melhor ao geral-universal de Platão do que ao concreto-particular de Aristóteles, conforme se infere logo à leitura das primeiras páginas do livro. E é no espaço comum, assim conquistado à Lógica, à Sociologia, à Filosofia, à Biologia, à Economia, à Engenharia Industrial — citando apenas alguns segmentos da complexa tessitura do conhecimento humano — que o autor vai erigir, solidamente, os alicerces de seu bem urdido "modelo cibernético de administração industrial".
+
+A segunda parte do livro — Cibernética Aplicada — muito embora esteja ao alcance do leitor comum, interessará mais diretamente aos profissionais das áreas de administração de empresas, economia e ciências contábeis, bem como aos docentes e discentes dessas faculdades, notadamente de disciplinas tais como: administração da produção. administração de material, custos, organização e método, organização industrial processamento de dados e outras afins. Vou mais além: concordo plenamente com o professor Batalha quando ele lamenta o atraso em que nos encontramos com relação aos países
+
+16

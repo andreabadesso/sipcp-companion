@@ -1,0 +1,1 @@
+> **[Figura 3 — Organograma da Empresa com órgão de Pesquisa. Estrutura hierárquica com caixa central "GESTÃO" ligada a quatro departamentos: "PRODUÇÃO" (superior esquerdo), "ESTOQUE" (esquerdo), "VENDAS" (inferior esquerdo) e "PESQUISA" (inferior direito).]**

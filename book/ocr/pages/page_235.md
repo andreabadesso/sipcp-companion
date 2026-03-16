@@ -1,0 +1,5 @@
+O metabolismo, tal como o feedback, é dotado de singular propriedade: funciona independentemente das causas das perturbações que estejam modificando as entradas. Age sobre elas como um servo obediente e discreto, sempre pronto a cumprir programação que lhe é imposta, sem questionar o por quê das ordens recebidas!
+
+Os feedback negativos constituem isomorfismos do processo anabólico pois, ao ajustar para baixo os excessos de entrada, corrigem aprioristicamente o erro, garantindo, assim, a homeostase interna. Os feedback positivos, quando resultantes de uma disfunção do processo catabólico, podem conduzir o organismo à auto-destruição. Não se importando com as causas das perturbações havidas na entrada (primeira propriedade), trabalham incessantemente para eliminar os excessos, e, nesse inútil labor, consomem mais energia que a que fornecem ao organismo. Assim, passam a exigir entradas cada vez maiores, para que possam catabolizar as entradas excessivas, gerando um ciclo vicioso que se nutre do próprio desvio de fase, sempre crescente. Por tal razão que se diz que os feedback positivos tende
+
+240
