@@ -9,181 +9,188 @@ export const SpeechHook = {
     this.recognition = null
     this._isListening = false
     this._audioEl = null
+    this._pausedForTTS = false
 
-    // Log available audio devices
-    if (navigator.mediaDevices) {
-      navigator.mediaDevices.enumerateDevices().then(devices => {
-        const mics = devices.filter(d => d.kind === "audioinput")
-        console.log("[SIPCP] Available microphones:", mics.length)
-        mics.forEach((m, i) => console.log(`[SIPCP]   ${i}: ${m.label || "unnamed"} (${m.deviceId.slice(0,8)}...)`))
-      })
+    this._setupRecognition()
 
-      // Request mic access using the Chrome-selected default device
-      navigator.mediaDevices.enumerateDevices().then(devices => {
-        // Find the device Chrome settings selected (AirPods or whatever is default)
-        const airpods = devices.find(d => d.kind === "audioinput" && d.label.includes("AirPods"))
-        const defaultMic = devices.find(d => d.kind === "audioinput" && d.deviceId === "default")
-        const preferred = airpods || defaultMic
-
-        const constraints = preferred
-          ? { audio: { deviceId: { exact: preferred.deviceId } } }
-          : { audio: true }
-
-        console.log("[SIPCP] Requesting mic:", preferred?.label || "system default")
-
-        return navigator.mediaDevices.getUserMedia(constraints)
-      })
-        .then(stream => {
-          const track = stream.getAudioTracks()[0]
-          console.log("[SIPCP] Active mic:", track.label, "| settings:", JSON.stringify(track.getSettings()))
-          // Keep stream open so Chrome doesn't switch back
-          this._micStream = stream
-        })
-        .catch(err => console.error("[SIPCP] Mic access error:", err.message))
-    }
-
-    // Setup Speech Recognition (STT)
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-    if (SpeechRecognition) {
-      this.recognition = new SpeechRecognition()
-      this.recognition.lang = "pt-BR"
-      this.recognition.continuous = true
-      this.recognition.interimResults = true
-
-      this.recognition.onresult = (event) => {
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const result = event.results[i]
-          const text = result[0].transcript.trim()
-          const confidence = result[0].confidence
-          console.log(`[SIPCP] Result: "${text}" (final: ${result.isFinal}, confidence: ${confidence})`)
-          if (result.isFinal && text) {
-            console.log("[SIPCP] Voice captured (final):", text)
-            this.pushEvent("voice_text", { text })
-          }
-        }
-      }
-
-      this.recognition.onaudiostart = () => console.log("[SIPCP] Audio capture started — mic is active")
-      this.recognition.onaudioend = () => console.log("[SIPCP] Audio capture ended")
-      this.recognition.onspeechstart = () => console.log("[SIPCP] Speech detected!")
-      this.recognition.onspeechend = () => console.log("[SIPCP] Speech ended")
-      this.recognition.onnomatch = () => console.log("[SIPCP] No match found")
-
-      this.recognition.onerror = (event) => {
-        console.log("[SIPCP] Speech error:", event.error)
-        if (event.error === "not-allowed" || event.error === "service-not-available") {
-          this._isListening = false
-          this.pushEvent("toggle_listen", {})
-          alert("Permissão do microfone negada. Por favor permita o acesso ao microfone nas configurações do navegador.")
-        }
-      }
-
-      this.recognition.onend = () => {
-        console.log("[SIPCP] Recognition ended, listening:", this._isListening)
-        if (this._isListening) {
-          setTimeout(() => {
-            if (this._isListening && this.recognition) {
-              try {
-                this.recognition.start()
-                console.log("[SIPCP] Recognition restarted")
-              } catch(e) {
-                console.log("[SIPCP] Restart failed:", e.message)
-              }
-            }
-          }, 100)
-        }
-      }
-    } else {
-      console.warn("[SIPCP] Speech Recognition not supported in this browser")
-    }
-
-    // Listen for LiveView events
-    this.handleEvent("start_listening", () => this.startListening())
-    this.handleEvent("stop_listening", () => this.stopListening())
-
-    // TTS via ElevenLabs streaming endpoint
+    // LiveView events
     this.handleEvent("speak_url", ({ url }) => this.speakUrl(url))
+    this.handleEvent("stop_audio", () => this.stopAudio())
+    this.handleEvent("draft_ready", () => {})
+
+    // Pre-create audio element on first gesture (iOS autoplay unlock)
+    this._preloadedAudio = null
+    const prime = () => {
+      if (this._preloadedAudio) return
+      const a = new Audio()
+      a.src = "data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAABhkVHjKgAAAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAABhkVHjKgAAAAAAAAAAAAAAAAA"
+      a.volume = 1.0
+      a.play().then(() => {
+        a.pause()
+        a.currentTime = 0
+        this._preloadedAudio = a
+        this.debugMsg("Áudio pronto")
+      }).catch(() => {})
+    }
+    document.addEventListener("touchstart", prime, { once: true })
+    document.addEventListener("click", prime, { once: true })
+  },
+
+  _setupRecognition() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition
+    if (!SR) return
+
+    // Kill old instance
+    if (this.recognition) {
+      try { this.recognition.abort() } catch(e) {}
+    }
+
+    this.recognition = new SR()
+    this.recognition.lang = "pt-BR"
+    this.recognition.continuous = false  // Safari works better with single-shot
+    this.recognition.interimResults = false
+
+    this.recognition.onresult = (event) => {
+      const result = event.results[event.results.length - 1]
+      if (result.isFinal) {
+        const text = result[0].transcript.trim()
+        if (text) {
+          this.debugMsg("Ouvido: " + text.slice(0, 40))
+          this.pushEvent("voice_text", { text })
+        }
+      }
+    }
+
+    this.recognition.onerror = (event) => {
+      this.debugMsg("Mic erro: " + event.error)
+      if (event.error === "not-allowed" || event.error === "service-not-available") {
+        this._isListening = false
+        this.pushEvent("toggle_listen", {})
+      }
+    }
+
+    this.recognition.onend = () => {
+      // With continuous:false, restart after each result
+      if (this._isListening && !this._pausedForTTS) {
+        setTimeout(() => {
+          if (this._isListening && !this._pausedForTTS) {
+            try { this.recognition.start() } catch(e) {}
+          }
+        }, 200)
+      }
+    }
   },
 
   updated() {
     const btn = document.getElementById("voice-btn")
-    if (btn) {
-      const shouldListen = btn.dataset.listening === "true"
-      if (shouldListen && !this._isListening) {
-        this.startListening()
-      } else if (!shouldListen && this._isListening) {
-        this.stopListening()
-      }
-    }
+    if (!btn) return
+    const want = btn.dataset.listening === "true"
+    if (want && !this._isListening) this.startListening()
+    else if (!want && this._isListening) this.stopListening()
   },
 
   startListening() {
-    if (!this.recognition) {
-      alert("Seu navegador não suporta reconhecimento de voz. Use o Google Chrome.")
-      return
-    }
     if (this._isListening) return
+    if (this._audioEl) return
 
-    // Stop any playing audio so mic doesn't pick it up
-    this.stopAudio()
+    // Recreate recognition each time (Safari kills it after stop)
+    this._setupRecognition()
+    if (!this.recognition) return
 
-    console.log("[SIPCP] Starting to listen...")
     this._isListening = true
+    this._pausedForTTS = false
     try {
       this.recognition.start()
+      this.debugMsg("Mic ligado")
     } catch(e) {
-      console.log("[SIPCP] Start error (probably already running):", e.message)
+      this.debugMsg("Erro mic: " + e.message)
+      this._isListening = false
     }
   },
 
   stopListening() {
-    console.log("[SIPCP] Stopping listening...")
     this._isListening = false
-    if (this.recognition) {
-      try { this.recognition.stop() } catch(e) {}
-    }
+    this._pausedForTTS = false
+    if (this.recognition) try { this.recognition.stop() } catch(e) {}
+    this.debugMsg("")
   },
 
   speakUrl(url) {
-    // Stop any in-progress audio
     this.stopAudio()
 
-    // Stop listening while TTS plays (avoid mic picking up speaker)
-    const wasListening = this._isListening
-    if (wasListening) this.stopListening()
+    // Pause mic during playback (internal only — server state unchanged)
+    if (this._isListening) {
+      this._pausedForTTS = true
+      if (this.recognition) try { this.recognition.stop() } catch(e) {}
+    }
 
-    const audio = new Audio(url)
-    audio.preload = "auto"
+    const audio = this._preloadedAudio || new Audio()
+    audio.src = url
+    audio.volume = 1.0
     this._audioEl = audio
+    this.showStopButton()
 
     audio.onended = () => {
-      console.log("[SIPCP] TTS playback finished")
       this._audioEl = null
+      this.hideStopButton()
+      this.debugMsg("Áudio terminou")
+      // Resume mic after playback
+      if (this._pausedForTTS && this._isListening) {
+        this._pausedForTTS = false
+        setTimeout(() => {
+          try { this.recognition.start() } catch(e) {}
+          this.debugMsg("Mic religado")
+        }, 300)
+      }
     }
 
-    audio.onerror = (e) => {
-      console.error("[SIPCP] TTS audio error:", e)
+    audio.onerror = () => {
       this._audioEl = null
+      this.hideStopButton()
+      this.debugMsg("Erro no áudio")
+      if (this._pausedForTTS && this._isListening) {
+        this._pausedForTTS = false
+        try { this.recognition.start() } catch(e) {}
+      }
     }
 
-    audio.play().catch(e => {
-      console.warn("[SIPCP] Autoplay blocked:", e.message)
-    })
+    audio.play()
+      .then(() => this.debugMsg("Tocando..."))
+      .catch(e => this.debugMsg("Bloqueado: " + e.message))
   },
 
   stopAudio() {
     if (this._audioEl) {
       this._audioEl.pause()
-      this._audioEl.src = ""
+      this._audioEl.currentTime = 0
       this._audioEl = null
     }
+    this.hideStopButton()
+  },
+
+  debugMsg(msg) {
+    let el = document.getElementById("debug-audio")
+    if (!el) {
+      el = document.createElement("div")
+      el.id = "debug-audio"
+      el.style.cssText = "position:fixed;bottom:55px;left:0;right:0;text-align:center;font-size:11px;color:#888;z-index:999;padding:2px;"
+      document.body.appendChild(el)
+    }
+    el.textContent = msg
+  },
+
+  showStopButton() {
+    const el = document.getElementById("stop-audio-float")
+    if (el) { el.classList.remove("hidden"); el.classList.add("visible") }
+  },
+
+  hideStopButton() {
+    const el = document.getElementById("stop-audio-float")
+    if (el) { el.classList.remove("visible"); el.classList.add("hidden") }
   },
 
   destroyed() {
-    this._isListening = false
-    if (this.recognition) {
-      try { this.recognition.stop() } catch(e) {}
-    }
+    this.stopListening()
     this.stopAudio()
   }
 }

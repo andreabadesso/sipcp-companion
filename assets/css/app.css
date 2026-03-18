@@ -305,10 +305,74 @@
 .sound-wave-sm .bar:nth-child(2) { height: 12px; animation-delay: 0.2s; }
 .sound-wave-sm .bar:nth-child(3) { height: 6px; animation-delay: 0.4s; }
 
+/* ── Stop audio floating button ── */
+.stop-float {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.stop-float.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(10px);
+}
+
+.stop-float.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* ── Safe area for mobile bottom bar ── */
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+
+/* ── Draft proposal cards ── */
+.draft-card {
+  border: 2px solid var(--gold-dim);
+  background: linear-gradient(135deg, #FFFDF5 0%, var(--warm-white) 100%);
+  box-shadow: 0 4px 20px rgba(196, 149, 106, 0.15), 0 1px 6px rgba(44, 24, 16, 0.06);
+}
+
+.draft-pending {
+  border-color: var(--gold);
+  animation: draft-glow 2.5s ease-in-out infinite;
+}
+
+.draft-approved {
+  border-color: #5C8A5C;
+  background: linear-gradient(135deg, #F3FAF3 0%, var(--warm-white) 100%);
+}
+
+.draft-rejected {
+  border-color: #8A5C5C;
+  background: linear-gradient(135deg, #FAF3F3 0%, var(--warm-white) 100%);
+  opacity: 0.7;
+}
+
+@keyframes draft-glow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(196, 149, 106, 0.15); }
+  50%       { box-shadow: 0 4px 32px rgba(196, 149, 106, 0.35), 0 0 0 3px rgba(196, 149, 106, 0.1); }
+}
+
+.draft-original {
+  background: rgba(139, 115, 85, 0.08);
+  border-left: 3px solid var(--ink-faded);
+}
+
+.draft-proposed {
+  background: rgba(196, 149, 106, 0.10);
+  border-left: 3px solid var(--gold);
+}
+
+.badge-pending  { background: var(--gold-dim); }
+.badge-approved { background: #5C8A5C; }
+.badge-rejected { background: #8A5C5C; }
 
 /* ── Fade-in for messages ── */
 .msg-enter {

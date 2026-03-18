@@ -11,42 +11,76 @@ defmodule SipcpCompanion.Book do
   def search(query, opts \\ []) do
     limit = Keyword.get(opts, :limit, 5)
 
-    case get_embedding(query) do
-      {:ok, embedding} ->
-        Page
-        |> order_by([p], fragment("embedding <=> ?::vector", ^embedding))
-        |> limit(^limit)
-        |> select([p], %{
-          id: p.id,
-          page_number: p.page_number,
-          section: p.section,
-          content: p.content
-        })
-        |> Repo.all()
-        |> Enum.map(fn p ->
-          %{content: p.content, page: p.page_number, section: p.section}
-        end)
+    # Hybrid: text match first (exact), then semantic to fill remaining slots
+    text_results = text_search(query, limit)
+    text_ids = Enum.map(text_results, & &1.page)
 
-      {:error, _} ->
-        text_search(query, limit)
+    semantic_results =
+      case SipcpCompanion.AI.Embeddings.embed(query) do
+        {:ok, embedding} ->
+          vector = Pgvector.new(embedding)
+
+          Page
+          |> where([p], not is_nil(p.embedding))
+          |> where([p], p.page_number not in ^text_ids)
+          |> order_by([p], fragment("embedding <=> ?", ^vector))
+          |> limit(^limit)
+          |> select([p], %{page_number: p.page_number, section: p.section, content: p.content})
+          |> Repo.all()
+          |> Enum.map(fn p -> %{content: p.content, page: p.page_number, section: p.section} end)
+
+        {:error, _} ->
+          []
+      end
+
+    (text_results ++ semantic_results) |> Enum.take(limit)
+  rescue
+    e ->
+      IO.inspect(e, label: "[Book.search error]")
+      []
+  end
+
+  def text_search(query, limit) do
+    stop_words = ~w(que como posso sobre escrevi mostre meu minha para com por uma dos das nos nas seu sua este esta isso aqui ele ela livro)
+
+    keywords =
+      query
+      |> String.downcase()
+      |> String.replace(~r/[^\w\sáàâãéèêíìîóòôõúùûç]/u, "")
+      |> String.split()
+      |> Enum.reject(fn w -> String.length(w) < 3 || w in stop_words end)
+      |> Enum.take(4)
+
+    case keywords do
+      [] -> []
+      words ->
+        # Try progressively: all words AND, then fewer, then single best
+        try_search(words, limit) ||
+          try_search(Enum.take(words, 2), limit) ||
+          try_search([List.last(words)], limit) ||
+          []
     end
   rescue
     _ -> []
   end
 
-  def text_search(query, limit) do
-    like = "%#{query}%"
+  defp try_search(words, limit) do
+    # Build AND query — all keywords must appear
+    base =
+      Page
+      |> select([p], %{page_number: p.page_number, section: p.section, content: p.content})
+      |> limit(^limit)
 
-    Page
-    |> where([p], ilike(p.content, ^like))
-    |> limit(^limit)
-    |> select([p], %{page_number: p.page_number, section: p.section, content: p.content})
-    |> Repo.all()
-    |> Enum.map(fn p ->
-      %{content: p.content, page: p.page_number, section: p.section}
-    end)
-  rescue
-    _ -> []
+    query =
+      Enum.reduce(words, base, fn word, q ->
+        like = "%#{word}%"
+        where(q, [p], ilike(p.content, ^like))
+      end)
+
+    case Repo.all(query) do
+      [] -> nil
+      results -> Enum.map(results, fn p -> %{content: p.content, page: p.page_number, section: p.section} end)
+    end
   end
 
   def ingest_markdown(markdown_content) do

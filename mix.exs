@@ -68,7 +68,12 @@ defmodule SipcpCompanion.MixProject do
       {:req, "~> 0.5"},
 
       # Vector search (pgvector)
-      {:pgvector, "~> 0.3"}
+      {:pgvector, "~> 0.3"},
+
+      # Local embeddings (Bumblebee + EXLA)
+      {:bumblebee, "~> 0.6"},
+      {:nx, "~> 0.9"},
+      {:exla, "~> 0.9"}
     ]
   end
 

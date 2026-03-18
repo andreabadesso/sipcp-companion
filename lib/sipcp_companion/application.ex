@@ -12,6 +12,11 @@ defmodule SipcpCompanion.Application do
       SipcpCompanion.Repo,
       {DNSCluster, query: Application.get_env(:sipcp_companion, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: SipcpCompanion.PubSub},
+      # Local embeddings model (Bumblebee + EXLA)
+      {Nx.Serving,
+       serving: SipcpCompanion.AI.Embeddings.serving(),
+       name: SipcpCompanion.EmbeddingServing,
+       batch_timeout: 100},
       # Agent registry — each conversation session is a GenServer
       {Registry, keys: :unique, name: SipcpCompanion.AgentRegistry},
       # Start to serve requests, typically the last entry

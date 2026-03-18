@@ -8,6 +8,7 @@ defmodule SipcpCompanion.AI.Agent do
 
   alias SipcpCompanion.AI.Claude
   alias SipcpCompanion.Book
+  alias SipcpCompanion.Book.Edits
   alias SipcpCompanion.Conversations
 
   defstruct [
@@ -16,7 +17,8 @@ defmodule SipcpCompanion.AI.Agent do
     :live_view_pid,
     messages: [],
     current_response: "",
-    book_context: nil
+    book_context: nil,
+    pending_tool: nil
   ]
 
   # --- Client API ---
@@ -28,6 +30,10 @@ defmodule SipcpCompanion.AI.Agent do
 
   def send_message(session_id, text) do
     GenServer.cast(via(session_id), {:user_message, text})
+  end
+
+  def resolve_draft(session_id, edit_id, decision) do
+    GenServer.cast(via(session_id), {:resolve_draft, edit_id, decision})
   end
 
   def get_history(session_id) do
@@ -49,23 +55,40 @@ defmodule SipcpCompanion.AI.Agent do
 
   @impl true
   def handle_cast({:user_message, text}, state) do
-    # 1. Search relevant book passages via RAG
     context = Book.search(text, limit: 3)
-
-    # 2. Build augmented message with book context
     augmented_text = build_augmented_prompt(text, context)
-
-    # 3. Add to conversation history
     messages = state.messages ++ [%{role: "user", content: augmented_text}]
 
-    # 4. Stream response from Claude
-    Claude.stream(messages,
-      stream_to: self(),
-      system: system_prompt_with_context(context)
-    )
+    stream_claude(messages, context, state)
 
     {:noreply, %{state | messages: messages, current_response: "", book_context: context}}
   end
+
+  @impl true
+  def handle_cast({:resolve_draft, edit_id, :approve}, state) do
+    Edits.approve_edit(edit_id)
+
+    synthetic = "[O Professor aprovou a proposta de edição. Confirme brevemente e pergunte se deseja continuar editando.]"
+    messages = state.messages ++ [%{role: "user", content: synthetic}]
+
+    stream_claude(messages, state.book_context, state)
+
+    {:noreply, %{state | messages: messages, current_response: ""}}
+  end
+
+  @impl true
+  def handle_cast({:resolve_draft, edit_id, :reject}, state) do
+    Edits.reject_edit(edit_id)
+
+    synthetic = "[O Professor rejeitou a proposta de edição. Pergunte o que gostaria de diferente e ofereça uma alternativa.]"
+    messages = state.messages ++ [%{role: "user", content: synthetic}]
+
+    stream_claude(messages, state.book_context, state)
+
+    {:noreply, %{state | messages: messages, current_response: ""}}
+  end
+
+  # --- Streaming handlers ---
 
   @impl true
   def handle_info({:ai_delta, text}, state) do
@@ -74,18 +97,45 @@ defmodule SipcpCompanion.AI.Agent do
   end
 
   @impl true
+  def handle_info({:tool_start, name, id}, state) do
+    {:noreply, %{state | pending_tool: %{name: name, id: id, input: ""}}}
+  end
+
+  @impl true
+  def handle_info({:tool_delta, json_fragment}, state) do
+    updated_tool = Map.update!(state.pending_tool, :input, &(&1 <> json_fragment))
+    {:noreply, %{state | pending_tool: updated_tool}}
+  end
+
+  @impl true
+  def handle_info(:tool_done, state) do
+    %{name: "propose_edit", id: tool_id, input: json} = state.pending_tool
+
+    case Jason.decode(json) do
+      {:ok, params} ->
+        handle_propose_edit(params, tool_id, state)
+
+      {:error, _} ->
+        # Malformed tool input — tell Claude it failed
+        messages = append_tool_result(state.messages, tool_id, "Erro ao processar proposta. Tente novamente.")
+        stream_claude(messages, state.book_context, state)
+        {:noreply, %{state | messages: messages, pending_tool: nil, current_response: ""}}
+    end
+  end
+
+  @impl true
   def handle_info(:ai_done, state) do
     response = state.current_response
 
-    # Store assistant reply in conversation history for multi-turn coherence
-    messages = state.messages ++ [%{role: "assistant", content: response}]
-
-    send(state.live_view_pid, :ai_done)
-
-    # Condense conversation if it's getting long
-    messages = maybe_condense(messages, state)
-
-    {:noreply, %{state | messages: messages, current_response: ""}}
+    unless response == "" do
+      messages = state.messages ++ [%{role: "assistant", content: response}]
+      messages = maybe_condense(messages, state)
+      send(state.live_view_pid, :ai_done)
+      {:noreply, %{state | messages: messages, current_response: ""}}
+    else
+      send(state.live_view_pid, :ai_done)
+      {:noreply, state}
+    end
   end
 
   @impl true
@@ -93,21 +143,91 @@ defmodule SipcpCompanion.AI.Agent do
     {:reply, state.messages, state}
   end
 
+  # --- Tool handling ---
+
+  defp handle_propose_edit(params, tool_id, state) do
+    page = params["page_number"] || 0
+    section = params["section"]
+    proposed = params["proposed_text"] || ""
+    rationale = params["rationale"] || ""
+
+    # Look up original text
+    original =
+      case Book.search("página #{page} #{section || ""}", limit: 1) do
+        [%{content: c} | _] -> c
+        _ -> nil
+      end
+
+    # Save to DB
+    {:ok, edit} =
+      Edits.create_pending_edit(state.db_session_id, %{
+        page_number: page,
+        section: section,
+        original_text: original,
+        proposed_text: proposed,
+        rationale: rationale
+      })
+
+    # Notify LiveView
+    send(state.live_view_pid, {:proposal_ready, edit})
+
+    # Build tool_result and continue the agentic loop
+    # The assistant message with tool_use must be recorded in history
+    assistant_tool_msg = %{
+      role: "assistant",
+      content: [%{
+        type: "tool_use",
+        id: tool_id,
+        name: "propose_edit",
+        input: params
+      }]
+    }
+
+    # Add any text that came before the tool call
+    assistant_msg =
+      if state.current_response != "" do
+        [
+          %{role: "assistant", content: [
+            %{type: "text", text: state.current_response},
+            %{type: "tool_use", id: tool_id, name: "propose_edit", input: params}
+          ]}
+        ]
+      else
+        [assistant_tool_msg]
+      end
+
+    messages = state.messages ++ assistant_msg
+    messages = append_tool_result(messages, tool_id, "Proposta criada e exibida ao Professor. Aguardando aprovação.")
+
+    # Continue — Claude will generate spoken introduction
+    stream_claude(messages, state.book_context, state)
+
+    {:noreply, %{state | messages: messages, pending_tool: nil, current_response: ""}}
+  end
+
+  defp append_tool_result(messages, tool_id, text) do
+    messages ++ [%{
+      role: "user",
+      content: [%{
+        type: "tool_result",
+        tool_use_id: tool_id,
+        content: text
+      }]
+    }]
+  end
+
   # --- Condensation ---
 
-  # Keep last 6 messages (3 turns) + a summary of older ones
   @max_messages 10
 
   defp maybe_condense(messages, _state) when length(messages) <= @max_messages, do: messages
 
   defp maybe_condense(messages, state) do
-    # Split: older messages to summarize, recent to keep
     keep_count = 6
     {old, recent} = Enum.split(messages, length(messages) - keep_count)
 
     summary = condense_messages(old)
 
-    # Persist summary to DB if we have a db_session_id
     if state.db_session_id do
       Conversations.update_session_summary(state.db_session_id, summary)
     end
@@ -118,6 +238,7 @@ defmodule SipcpCompanion.AI.Agent do
   defp condense_messages(messages) do
     conversation =
       messages
+      |> Enum.filter(&is_binary(&1.content))
       |> Enum.map(fn %{role: role, content: content} ->
         label = if role == "user", do: "Professor", else: "Assistente"
         "#{label}: #{String.slice(content, 0, 200)}"
@@ -134,7 +255,15 @@ defmodule SipcpCompanion.AI.Agent do
     end
   end
 
-  # --- Private ---
+  # --- Helpers ---
+
+  defp stream_claude(messages, context, _state) do
+    Claude.stream(messages,
+      stream_to: self(),
+      system: system_prompt_with_context(context),
+      tools: Claude.book_editing_tools()
+    )
+  end
 
   defp build_augmented_prompt(text, []), do: text
 
@@ -157,7 +286,7 @@ defmodule SipcpCompanion.AI.Agent do
   defp system_prompt_with_context(context) do
     base = Claude.default_system_prompt()
 
-    if context != [] do
+    if context && context != [] do
       sections =
         context
         |> Enum.map(& &1.section)

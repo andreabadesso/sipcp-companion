@@ -5,6 +5,9 @@ defmodule SipcpCompanionWeb.CompanionLive do
   alias SipcpCompanion.Conversations
   alias SipcpCompanion.TtsToken
 
+  @approval_words ~w(sim aprovado certo isso exato perfeito pode concordo ok)
+  @rejection_words ~w(não nao muda diferente outro errado discordo rejeito)
+
   @impl true
   def mount(_params, _session, socket) do
     session_id = Ecto.UUID.generate()
@@ -27,7 +30,8 @@ defmodule SipcpCompanionWeb.CompanionLive do
          current_response: "",
          streaming: false,
          listening: false,
-         input_text: ""
+         input_text: "",
+         pending_drafts: []
        )}
     else
       {:ok,
@@ -39,24 +43,30 @@ defmodule SipcpCompanionWeb.CompanionLive do
          current_response: "",
          streaming: false,
          listening: false,
-         input_text: ""
+         input_text: "",
+         pending_drafts: []
        )}
     end
   end
 
   @impl true
   def handle_event("send_message", %{"text" => text}, socket) when text != "" do
-    send_user_message(socket, String.trim(text))
+    handle_text_input(socket, String.trim(text))
   end
 
   def handle_event("send_message", _, socket), do: {:noreply, socket}
 
   @impl true
   def handle_event("voice_text", %{"text" => text}, socket) when text != "" do
-    send_user_message(socket, String.trim(text))
+    handle_text_input(socket, String.trim(text))
   end
 
   def handle_event("voice_text", _, socket), do: {:noreply, socket}
+
+  @impl true
+  def handle_event("stop_speaking", _, socket) do
+    {:noreply, push_event(socket, "stop_audio", %{})}
+  end
 
   @impl true
   def handle_event("toggle_listen", _, socket) do
@@ -68,6 +78,8 @@ defmodule SipcpCompanionWeb.CompanionLive do
     text = params["text"] || ""
     {:noreply, assign(socket, input_text: text)}
   end
+
+  # --- AI streaming ---
 
   @impl true
   def handle_info({:ai_delta, text}, socket) do
@@ -81,27 +93,95 @@ defmodule SipcpCompanionWeb.CompanionLive do
   def handle_info(:ai_done, socket) do
     response = socket.assigns.current_response
 
-    Conversations.add_message(socket.assigns.db_session_id, "assistant", response)
+    if response != "" do
+      Conversations.add_message(socket.assigns.db_session_id, "assistant", response)
+      messages = socket.assigns.messages ++ [%{role: "assistant", content: response}]
 
-    messages =
-      socket.assigns.messages ++ [%{role: "assistant", content: response}]
+      {:noreply,
+       socket
+       |> assign(messages: messages, current_response: "", streaming: false)
+       |> push_event("speak_url", %{url: tts_url(response)})
+       |> push_event("scroll_down", %{})}
+    else
+      {:noreply, assign(socket, streaming: false)}
+    end
+  end
+
+  @impl true
+  def handle_info({:proposal_ready, edit}, socket) do
+    drafts = socket.assigns.pending_drafts ++ [edit]
+
+    tts_text =
+      "Tenho uma proposta para a página #{edit.page_number}. " <>
+        "#{edit.rationale} " <>
+        "O texto seria: #{edit.proposed_text} " <>
+        "O senhor aprova?"
+
+    {:noreply,
+     socket
+     |> assign(pending_drafts: drafts)
+     |> push_event("speak_url", %{url: tts_url(tts_text)})
+     |> push_event("draft_ready", %{})
+     |> push_event("scroll_down", %{})}
+  end
+
+  # --- Private ---
+
+  defp handle_text_input(socket, text) do
+    pending = socket.assigns.pending_drafts
+    has_pending = Enum.any?(pending, &(&1.status == "pending"))
+
+    cond do
+      has_pending && approval_phrase?(text) ->
+        latest = pending |> Enum.filter(&(&1.status == "pending")) |> List.last()
+        resolve_draft(socket, latest.id, :approve)
+
+      has_pending && rejection_phrase?(text) ->
+        latest = pending |> Enum.filter(&(&1.status == "pending")) |> List.last()
+        resolve_draft(socket, latest.id, :reject)
+
+      true ->
+        send_user_message(socket, text)
+    end
+  end
+
+  defp approval_phrase?(text) do
+    lower = String.downcase(text)
+    Enum.any?(@approval_words, &String.contains?(lower, &1))
+  end
+
+  defp rejection_phrase?(text) do
+    lower = String.downcase(text)
+    Enum.any?(@rejection_words, &String.contains?(lower, &1))
+  end
+
+  defp resolve_draft(socket, edit_id, decision) do
+    Agent.resolve_draft(socket.assigns.session_id, edit_id, decision)
+
+    updated_drafts =
+      Enum.map(socket.assigns.pending_drafts, fn d ->
+        if d.id == edit_id, do: %{d | status: Atom.to_string(decision)}, else: d
+      end)
+
+    label = if decision == :approve, do: "Aprovei a proposta", else: "Rejeitei a proposta"
+    messages = socket.assigns.messages ++ [%{role: "user", content: label}]
 
     {:noreply,
      socket
      |> assign(
+       pending_drafts: updated_drafts,
        messages: messages,
+       streaming: true,
        current_response: "",
-       streaming: false
+       listening: false,
+       input_text: ""
      )
-     |> push_event("speak_url", %{url: "/tts?token=#{URI.encode_www_form(TtsToken.sign(response))}"})
      |> push_event("scroll_down", %{})}
   end
 
   defp send_user_message(socket, text) do
     Conversations.add_message(socket.assigns.db_session_id, "user", text)
-
     messages = socket.assigns.messages ++ [%{role: "user", content: text}]
-
     Agent.send_message(socket.assigns.session_id, text)
 
     {:noreply,
@@ -114,6 +194,10 @@ defmodule SipcpCompanionWeb.CompanionLive do
        input_text: ""
      )
      |> push_event("scroll_down", %{})}
+  end
+
+  defp tts_url(text) do
+    "/tts?token=#{URI.encode_www_form(TtsToken.sign(text))}"
   end
 
   defp clean_markdown(text) do
@@ -129,6 +213,11 @@ defmodule SipcpCompanionWeb.CompanionLive do
     |> String.trim()
   end
 
+  defp draft_status_label("pending"), do: "Aguardando"
+  defp draft_status_label("approved"), do: "Aprovado"
+  defp draft_status_label("rejected"), do: "Recusado"
+  defp draft_status_label(_), do: ""
+
   @impl true
   def render(assigns) do
     ~H"""
@@ -137,7 +226,7 @@ defmodule SipcpCompanionWeb.CompanionLive do
       class="h-dvh flex flex-col paper-texture"
       phx-hook="SpeechHook"
     >
-      <%!-- ═══ Header — thin, elegant ═══ --%>
+      <%!-- Header --%>
       <header class="shrink-0 px-4 py-2" style="border-bottom: 1px solid var(--parchment-deep);">
         <div class="max-w-2xl mx-auto flex items-center justify-center gap-2">
           <span class="font-serif text-base font-bold tracking-wide" style="color: var(--ink);">
@@ -149,13 +238,13 @@ defmodule SipcpCompanionWeb.CompanionLive do
         </div>
       </header>
 
-      <%!-- ═══ Chat Area ═══ --%>
+      <%!-- Chat Area --%>
       <main
         id="chat-area"
         class="flex-1 overflow-y-auto px-3 md:px-6"
         phx-hook="ScrollHook"
       >
-        <div class="max-w-2xl mx-auto py-3 space-y-2">
+        <div class="max-w-2xl mx-auto py-3 space-y-3">
 
           <%!-- Welcome --%>
           <div :if={@messages == [] && @current_response == ""} class="py-8 md:py-14">
@@ -205,6 +294,47 @@ defmodule SipcpCompanionWeb.CompanionLive do
             </div>
           </div>
 
+          <%!-- Draft proposal cards --%>
+          <div :for={draft <- @pending_drafts} id={"draft-#{draft.id}"} class={[
+            "draft-card rounded-xl px-4 py-4 msg-enter",
+            if(draft.status == "pending", do: "draft-pending", else: ""),
+            if(draft.status == "approved", do: "draft-approved", else: ""),
+            if(draft.status == "rejected", do: "draft-rejected", else: "")
+          ]}>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-sans text-xs font-bold uppercase tracking-widest" style="color: var(--gold);">
+                Proposta — Pág. {draft.page_number}
+                <span :if={draft.section}> · {draft.section}</span>
+              </span>
+              <span class={[
+                "font-sans text-xs font-bold uppercase px-2 py-0.5 rounded-full text-white",
+                if(draft.status == "pending", do: "badge-pending", else: ""),
+                if(draft.status == "approved", do: "badge-approved", else: ""),
+                if(draft.status == "rejected", do: "badge-rejected", else: "")
+              ]}>
+                {draft_status_label(draft.status)}
+              </span>
+            </div>
+
+            <p class="font-serif text-base italic mb-3" style="color: var(--ink-light);">
+              {draft.rationale}
+            </p>
+
+            <div :if={draft.original_text} class="draft-original rounded px-3 py-2 mb-2 font-serif text-base" style="color: var(--ink-faded);">
+              <span class="font-sans text-[10px] uppercase tracking-widest block mb-1" style="color: var(--ink-faded);">Texto original</span>
+              {String.slice(draft.original_text, 0, 300)}
+            </div>
+
+            <div class="draft-proposed rounded px-3 py-2 font-serif text-lg leading-relaxed" style="color: var(--ink);">
+              <span class="font-sans text-[10px] uppercase tracking-widest block mb-1" style="color: var(--gold);">Texto proposto</span>
+              {draft.proposed_text}
+            </div>
+
+            <p :if={draft.status == "pending"} class="font-sans text-sm mt-3 text-center" style="color: var(--ink-faded);">
+              Diga "sim" para aprovar ou "não" para recusar
+            </p>
+          </div>
+
           <%!-- Streaming response --%>
           <div :if={@current_response != ""} class="msg-assistant rounded-lg px-4 py-3 msg-enter">
             <div class="flex items-center gap-1.5 mb-1">
@@ -218,7 +348,7 @@ defmodule SipcpCompanionWeb.CompanionLive do
             </div>
           </div>
 
-          <%!-- Thinking indicator — BIG and obvious --%>
+          <%!-- Loading --%>
           <div :if={@streaming && @current_response == ""} class="loading-overlay rounded-lg px-4 py-6 msg-enter text-center">
             <div class="thinking-dots flex gap-2 justify-center mb-2">
               <span></span>
@@ -233,7 +363,22 @@ defmodule SipcpCompanionWeb.CompanionLive do
         </div>
       </main>
 
-      <%!-- ═══ Input — single compact row ═══ --%>
+      <%!-- Stop audio floating button --%>
+      <div id="stop-audio-float" class="stop-float hidden">
+        <button
+          type="button"
+          phx-click="stop_speaking"
+          class="rounded-full px-5 py-2.5 flex items-center gap-2 cursor-pointer shadow-lg"
+          style="background: var(--voice-active); color: white;"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <rect x="6" y="6" width="12" height="12" rx="1" />
+          </svg>
+          <span class="font-sans text-sm font-bold">Parar</span>
+        </button>
+      </div>
+
+      <%!-- Input --%>
       <footer class="shrink-0 safe-bottom" style="background: var(--cream); border-top: 1px solid var(--parchment-deep);">
         <form phx-submit="send_message" class="max-w-2xl mx-auto px-3 py-2 flex items-center gap-2">
           <button
@@ -283,6 +428,7 @@ defmodule SipcpCompanionWeb.CompanionLive do
           >
             Enviar
           </button>
+
         </form>
       </footer>
     </div>
