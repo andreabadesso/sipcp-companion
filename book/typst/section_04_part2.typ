@@ -46,7 +46,7 @@ O Projeto Alpha seguiu o seguinte roteiro:
 - 5º - Avaliação das Alternativas;
 - 6º - Decisão (em termos de estratégia).
 
-As conclusões chegadas pela equipe do projeto Alpha resumem-se no contido nos tópicos a seguir.
+As conclusões a que chegou a equipe do projeto Alpha resumem-se no contido nos tópicos a seguir.
 
 ===== Estrutura Organizacional
 
@@ -117,7 +117,7 @@ Chamamos a atenção para duas assessorias, a nível presidência: "controller",
 
 #figura-25()
 
-O funcionamento do modelo, em termos de estabelecimento de variáveis de ação e de variáveis essenciais, não apresenta novidades. Tem-se a considerar, apenas, que quaisquer dos quatro níveis de pilotagem contam, agora, com um banco de dado infalível, situado em informática, ligado permanentemente ao eixo de comando central, que passa pelo vice-presidente executivo e através do qual transitam os interceptores.
+O funcionamento do modelo, em termos de estabelecimento de variáveis de ação e de variáveis essenciais, não apresenta novidades. Tem-se a considerar, apenas, que quaisquer dos quatro níveis de pilotagem contam, agora, com um banco de dados infalível, situado em informática, ligado permanentemente ao eixo de comando central, que passa pelo vice-presidente executivo e através do qual transitam os interceptores.
 
 No modelo neurofisiológico, diríamos que informática exerceria a função do diencéfalo, enquanto que controller atuaria como o centro de controle bulbar, inibindo e excitando o vago-simpático em busca de um permanente equilíbrio sinérgico. Em quaisquer dos dois casos, a ação motora se faz, repetimos, através do eixo de comando central — a medula — vice-presidente executivo.
 
@@ -131,7 +131,7 @@ Como o sistema integrado de programação e controle da produção está em seu 
 
 ==== Planejamento da Produção
 
-Na figura 26 — Grafo das Atividades de Planejamento da Produção, distingue-se cinco passos:
+Na figura 26 — Grafo das Atividades de Planejamento da Produção, distinguem-se cinco passos:
 
 - 1º – Definição do Trabalho
 - 2º – Isolamento dos Centros de Custos
@@ -177,7 +177,7 @@ Os centros de custos qualificam-se em auxiliares —CCA— e de produção (CCP)
 
 Os centros de custos da produção, constituem microssistemas produtivos no interior dos quais conjuntos coerentes de itens de materiais e tarefas elementares integram-se, inter-relacionam-se e interagem com o propósito de atingir determinado nível de agregação do produto, fixado na definição do trabalho (mais especificamente, na EDT). Pelos CCP transitam somente materiais diretamente aplicados no produto e mão-de-obra direta, constituindo, o seu somatório, os chamados custos primários.
 
-A diferença entre CCP e CCA reside na classificação dos insumos aplicados. Vimos que pelos CCPs transitam materiais e mão-de-obra diretos: pelos CCA transitam, materiais e mão-de-obra indiretos e outros custos indiretos, conhecidos como gastos gerais de fabricação (GGF).
+A diferença entre CCP e CCA reside na classificação dos insumos aplicados. Vimos que pelos CCPs transitam materiais e mão-de-obra diretos; pelos CCA transitam materiais e mão-de-obra indiretos e outros custos indiretos, conhecidos como gastos gerais de fabricação (GGF).
 
 Falamos em custos e despesas. Há que estabelecer a distinção entre os dois vocábulos, que, embora se refiram a idênticos fatos contábeis, passaram ultimamente a ser tratados de forma diferente.
 
@@ -193,11 +193,11 @@ A nova lei das sociedades por ações e legislação superveniente estabelece, i
 
 Vimos que, na EDT, os níveis de agregação do produto recebem referências numéricas que permitem particularizar os centros de custos pelos quais transitam os itens de materiais e as TE, tornando possível a futura integração do plano de contas à EDT.
 
-Agora, que os centros de custos se encontram isolados, a integração se faz sem qualquer dificuldade, e, com isso, a contabilidade gerencial da ALPHA passa, no projeto apenas, a ter existência real. Serve-se que a integração do plano de contas à EDT constitui o traço de união entre as duas contabilidades, gerencial e financeira.
+Agora, que os centros de custos se encontram isolados, a integração se faz sem qualquer dificuldade, e, com isso, a contabilidade gerencial da ALPHA passa, no projeto apenas, a ter existência real. Sabe-se que a integração do plano de contas à EDT constitui o traço de união entre as duas contabilidades, gerencial e financeira.
 
 ===== 4º Passo – Avaliação da Capacidade Produtiva dos CCP e CCA
 
-Na fase de implantação da estratégia anticrise este é um dos passos mais difíceis, pois informática não conta, ainda, com subsídios colhidos na prática para a avaliação da capacidade produtiva dos centros de custos de produção e auxiliares. Mas, nem por isso!... Aliando-se ao bom senso a experiência e o conhecimento das técnicas de administração da produção, é possível fazer-se uma avaliação razoavelmente confiável#footnote[_Malchline/Sá Motta/Shoeps/Weil em seu Manual de Administração da Produção (Ver bibliografia) desenvolvem técnicas muito precisas de avaliação de capacidade produtiva de centros de custos._].
+Na fase de implantação da estratégia anticrise este é um dos passos mais difíceis, pois informática não conta, ainda, com subsídios colhidos na prática para a avaliação da capacidade produtiva dos centros de custos de produção e auxiliares. Mas, nem por isso!... Aliando-se ao bom senso a experiência e o conhecimento das técnicas de administração da produção, é possível fazer-se uma avaliação razoavelmente confiável#footnote[_Machline/Sá Motta/Schoeps/Weil em seu Manual de Administração da Produção (Ver bibliografia) desenvolvem técnicas muito precisas de avaliação de capacidade produtiva de centros de custos._].
 
 ===== 5º Passo – Estimativa de Vendas
 
@@ -214,7 +214,7 @@ Constitui a fase seguinte de aprimoramento do modelo alpha de administração in
 
 Os primeiro e segundo passos constituem, na prática, o "prever" do ciclo administrativo. Os terceiro e quarto passos consubstanciam a dinâmica do modelo, justificando o ambicioso nome que lhe foi dado de sistema integrado de programação e controle da produção.
 
-Observe-se que a alocação de recursos se faz com base em performance estimadas por centros de custos. É o momento que o patrimônio da empresa — recursos humanos e físicos de toda a sorte — ocupa seus postos como um exército que, ao soar dos clarins, apresta-se para o combate. A orçamentação constitui uma modalidade de controle, baseada na apropriação dos custos e despesas a serem incorridos. Outras modalidades de controle serão, também, exercidas pelo SIPCP, tal como controle de qualidade e de tempo#footnote[_PERT/custo e PERT/tempo são técnicas de controle de projeto que oferecem substanciais vantagens quando as transformações do sistema operado implicam número muito elevado de transições. Daí o seu emprego no controle do projeto polaris e na indústria de construção civil._], mas nos deteremos, apenas, no controle sobre os custos e despesas.
+Observe-se que a alocação de recursos se faz com base em performances estimadas por centros de custos. É o momento que o patrimônio da empresa — recursos humanos e físicos de toda a sorte — ocupa seus postos como um exército que, ao soar dos clarins, apresta-se para o combate. A orçamentação constitui uma modalidade de controle, baseada na apropriação dos custos e despesas a serem incorridos. Outras modalidades de controle serão, também, exercidas pelo SIPCP, tal como controle de qualidade e de tempo#footnote[_PERT/custo e PERT/tempo são técnicas de controle de projeto que oferecem substanciais vantagens quando as transformações do sistema operado implicam número muito elevado de transições. Daí o seu emprego no controle do projeto polaris e na indústria de construção civil._], mas nos deteremos, apenas, no controle sobre os custos e despesas.
 
 Os orçamentos colunares flexíveis#footnote[_Poderá parecer, à primeira vista, paradoxal utilizar orçamentos colunares flexíveis quando se sabe que 100% do potencial produtivo será absorvido pelo mercado. Atente-se, entretanto, para o fato de que a capacidade dos centros de custos foi apenas avaliada (não é a mesma coisa que ser medida), tratando-se, assim, de dados teóricos, sujeitos a correções posteriores. Ademais, as linhas orçamentárias constituem o que se pensa e se pretende de vai ser o funcionamento sinérgico do sistema alpha._], elaborados por centros de custos, traduzem, portanto, a apropriação dos recursos alocados à produção para atender várias demandas, correspondentes a níveis de desempenho que se situam abaixo e acima da capacidade estimada. São, em última análise, parâmetros de controle fixados sobre custos e despesas estimados aprioristicamente.
 
@@ -238,7 +238,7 @@ O SIPCP emitiu as seguintes listagens, encaminhando-as aos respectivos departame
 
 — departamento de produção: CCP, estimado 75, real 80; CCAI, estimado 22, real 20;
 
-— departamento financeiro: CCAO₁, estimado 6, real 8; CCAO₂, estimado 4, real 4;
+— departamento financeiro: CCAO₁, estimado 6, real 3; CCAO₂, estimado 4, real 4;
 
 — departamento de pessoal: CCAO₃, estimado 6, real 6; CCAO₄, estimado 2, real 3;
 
@@ -256,4 +256,4 @@ O papel de controller será alertar a presidência a respeito da ruptura da linh
 
 Para encerrar, façamos uma rápida conjectura em torno do desvio observado em CCAO₈, cujas despesas com relações públicas e publicidade correspondem a um nível de desempenho da ordem de 160% (o que somente seria compatível, sinergicamente, com uma capacidade produtiva de 160% por parte de todos os departamentos da empresa!).
 
-Os recursos alocados a CCAO₈, embora virtualmente escassos, eram satisfatórios, considerando-se o fato de que o mercado é comprador e ainda que a ALPHA detém o monopólio do produto. Assim, o papel de CCAO₈ seria, simplesmente, manter contato periódico com os clientes, sem necessidade de por em prática uma dispendiosa e agressiva política de marketing. A disfunção de CCAO₈, causada, provavelmente, por uma preocupação excessiva de auto-afirmação dentro da empresa, será tratada por Ge mediante a imposição de variáveis de ação mais específicas e de variáveis essenciais mais rígidas e menos ambiciosas.
+Os recursos alocados a CCAO₈, embora virtualmente escassos, eram satisfatórios, considerando-se o fato de que o mercado é comprador e ainda que a ALPHA detém o monopólio do produto. Assim, o papel de CCAO₈ seria, simplesmente, manter contato periódico com os clientes, sem necessidade de pôr em prática uma dispendiosa e agressiva política de marketing. A disfunção de CCAO₈, causada, provavelmente, por uma preocupação excessiva de auto-afirmação dentro da empresa, será tratada por Ge mediante a imposição de variáveis de ação mais específicas e de variáveis essenciais mais rígidas e menos ambiciosas.

@@ -14,129 +14,180 @@
 
 #set page(
   paper: "a4",
-  margin: (top: 3cm, bottom: 3cm, left: 2.5cm, right: 2.5cm),
+  margin: (top: 2.8cm, bottom: 2.8cm, inside: 3cm, outside: 2.2cm),
   numbering: "1",
   number-align: center + bottom,
   header: context {
-    if counter(page).get().first() > 4 {
-      set text(size: 9pt, fill: luma(120))
-      emph[SIPCP — Fernando Batalha Monteiro]
-      h(1fr)
-      emph[1982]
+    let page-num = counter(page).get().first()
+    if page-num > 2 {
+      set text(size: 8.5pt, fill: luma(140), style: "italic")
+      if calc.odd(page-num) {
+        h(1fr)
+        [SIPCP — Fernando Batalha Monteiro]
+      } else {
+        [Sistema Integrado de Programação e Controle da Produção]
+        h(1fr)
+      }
+      v(-0.3em)
+      line(length: 100%, stroke: 0.3pt + luma(200))
     }
+  },
+  footer: context {
+    let page-num = counter(page).get().first()
+    set text(size: 9pt, fill: luma(100))
+    align(center, str(page-num))
   },
 )
 
 #set text(
-  font: "New Computer Modern",
-  size: 11pt,
+  font: "Libertinus Serif",
+  size: 13pt,
   lang: "pt",
   region: "BR",
 )
 
 #set par(
   justify: true,
-  leading: 0.8em,
-  first-line-indent: 1.5em,
+  leading: 10pt,
+  first-line-indent: 2em,
+  spacing: 22pt,
 )
 
 #set heading(numbering: none)
 
+// --- ORNAMENT ---
+#let ornament() = {
+  align(center)[
+    #v(0.3cm)
+    #text(size: 14pt, fill: luma(140))[— #h(0.3em) · #h(0.3em) —]
+    #v(0.3cm)
+  ]
+}
+
+#let thin-rule() = {
+  align(center, line(length: 40%, stroke: 0.5pt + luma(160)))
+}
+
+// --- HEADING STYLES ---
+
 #show heading.where(level: 1): it => {
   pagebreak(weak: true)
-  set text(size: 20pt, weight: "bold")
-  v(2cm)
-  align(center, upper(it.body))
-  v(1cm)
+  v(5cm)
+  align(center)[
+    #text(size: 13pt, weight: "regular", style: "italic", fill: luma(100), tracking: 0.15em)[
+      #upper(it.body)
+    ]
+  ]
+  v(0.8cm)
+  ornament()
+  v(3cm)
 }
 
 #show heading.where(level: 2): it => {
-  set text(size: 16pt, weight: "bold")
-  v(1.5em)
-  it
-  v(0.5em)
-  line(length: 100%, stroke: 0.5pt + luma(180))
-  v(0.5em)
+  v(3cm)
+  align(center)[
+    #text(size: 22pt, weight: "bold")[
+      #it.body
+    ]
+  ]
+  v(0.5cm)
+  align(center)[
+    #text(size: 11pt, fill: luma(150))[— #h(0.3em) · #h(0.3em) —]
+  ]
+  v(1.5cm)
 }
 
 #show heading.where(level: 3): it => {
-  set text(size: 13pt, weight: "bold")
-  v(1.2em)
-  it
-  v(0.4em)
+  v(2cm)
+  align(center)[
+    #text(size: 16pt, weight: "regular", style: "italic")[
+      #it.body
+    ]
+  ]
+  v(0.3cm)
+  align(center, line(length: 25%, stroke: 0.3pt + luma(180)))
+  v(1cm)
 }
 
 #show heading.where(level: 4): it => {
-  set text(size: 11pt, weight: "bold", style: "italic")
-  v(1em)
-  it
-  v(0.3em)
+  v(1.5cm)
+  align(center)[
+    #text(size: 14pt, weight: "bold")[
+      #it.body
+    ]
+  ]
+  v(0.8cm)
+}
+
+// --- FOOTNOTES ---
+#show footnote.entry: set text(size: 9.5pt, fill: luma(60))
+#set footnote.entry(separator: line(length: 25%, stroke: 0.3pt + luma(180)))
+
+// --- DROP CAP helper (for chapter openings, optional) ---
+#let drop-cap(body) = {
+  set par(first-line-indent: 0em)
+  body
 }
 
 // --- COVER PAGE ---
-#set page(numbering: none, header: none)
+#set page(numbering: none, header: none, footer: none, margin: 0pt)
 
-#v(4cm)
-
-#align(center)[
-  #text(size: 14pt, tracking: 0.3em, weight: "regular")[FERNANDO BATALHA MONTEIRO]
-]
-
-#v(3cm)
-
-#align(center)[
-  #text(size: 28pt, weight: "bold", tracking: 0.1em)[S I P C P]
-]
-
-#v(0.5cm)
-
-#align(center)[
-  #text(size: 14pt)[Sistema Integrado de Programação \ e Controle da Produção]
-]
-
-#v(1cm)
-
-#line(length: 40%, stroke: 0.5pt + luma(100))
-
-#v(0.5cm)
-
-#align(center)[
-  #text(size: 12pt, style: "italic")[Um Modelo Cibernético de \ Administração Industrial]
-]
-
-#v(1fr)
-
-#align(center)[
-  #text(size: 10pt)[Editora Metro Cúbico Ltda. — Manaus, AM \ 1982]
-]
-
-#v(1cm)
-
-// --- RESET PAGE NUMBERING ---
-#pagebreak()
-#set page(numbering: "i", header: none)
-#counter(page).update(1)
+#image("logo_hires.jpg", width: 100%, height: 100%, fit: "cover")
 
 // --- TABLE OF CONTENTS ---
-#align(center, text(size: 18pt, weight: "bold")[ÍNDICE])
-#v(1cm)
+#pagebreak()
+#set page(
+  numbering: "i",
+  header: none,
+  footer: context {
+    set text(size: 9pt, fill: luma(100))
+    align(center, counter(page).display("i"))
+  },
+  margin: (top: 2.8cm, bottom: 2.8cm, inside: 3cm, outside: 2.2cm),
+)
+#counter(page).update(1)
+
+#v(3cm)
+#align(center)[
+  #text(size: 13pt, weight: "regular", style: "italic", fill: luma(100), tracking: 0.15em)[ÍNDICE]
+]
+#v(0.5cm)
+#align(center)[
+  #text(size: 14pt, fill: luma(140))[— #h(0.3em) · #h(0.3em) —]
+]
+#v(1.5cm)
+
+#set text(size: 11pt)
 #outline(
   title: none,
-  indent: 1.5em,
+  indent: 2em,
   depth: 3,
 )
+#set text(size: 13pt)
 
 // --- BEGIN CONTENT ---
 #pagebreak()
 #set page(
   numbering: "1",
   header: context {
-    if counter(page).get().first() > 1 {
-      set text(size: 9pt, fill: luma(120))
-      emph[SIPCP — Fernando Batalha Monteiro]
-      h(1fr)
-      emph[1982]
+    let page-num = counter(page).get().first()
+    if page-num > 2 {
+      set text(size: 8pt, fill: luma(150), style: "italic", tracking: 0.05em)
+      align(center)[
+        #if calc.odd(page-num) [
+          SIPCP #h(1em) · #h(1em) Fernando Batalha Monteiro
+        ] else [
+          Sistema Integrado de Programação e Controle da Produção
+        ]
+      ]
+      v(-0.2em)
+      line(length: 60%, stroke: 0.3pt + luma(210))
     }
+  },
+  footer: context {
+    let page-num = counter(page).get().first()
+    set text(size: 9pt, fill: luma(130))
+    align(center)[— #str(page-num) —]
   },
 )
 #counter(page).update(1)
