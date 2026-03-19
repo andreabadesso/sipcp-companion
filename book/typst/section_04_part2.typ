@@ -238,7 +238,7 @@ O SIPCP emitiu as seguintes listagens, encaminhando-as aos respectivos departame
 
 — departamento de produção: CCP, estimado 75, real 80; CCAI, estimado 22, real 20;
 
-— departamento financeiro: CCAO₁, estimado 6, real 3; CCAO₂, estimado 4, real 4;
+— departamento financeiro: CCAO₁, estimado 6, real 8; CCAO₂, estimado 4, real 4;
 
 — departamento de pessoal: CCAO₃, estimado 6, real 6; CCAO₄, estimado 2, real 3;
 

@@ -199,6 +199,8 @@ No mundo de hoje, em que as fronteiras políticas vêm sendo subrepticiamente tr
 
 + SILVA LEME, Ruy A. _Controles na Produção_. São Paulo, Livraria Pioneira Editora. 1974.
 
++ SMITH, Adam. _A Riqueza das Nações_. Tradução brasileira. São Paulo, Abril Cultural, 1983.
+
 + WIENER, Norbert. _Cibernética e Sociedade: o uso humano de seres humanos_. Tradução de José Paulo Paes. São Paulo, Editora Cultrix, 1954.
 
 + ZACARELLI, Sérgio Baptista. _Programação e Controle da Produção_. São Paulo, Livraria Pioneira Editora. – 1975.
