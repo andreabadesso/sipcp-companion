@@ -12,11 +12,14 @@ defmodule SipcpCompanion.Application do
       SipcpCompanion.Repo,
       {DNSCluster, query: Application.get_env(:sipcp_companion, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: SipcpCompanion.PubSub},
-      # Local embeddings model (Bumblebee + EXLA)
-      {Nx.Serving,
-       serving: SipcpCompanion.AI.Embeddings.serving(),
-       name: SipcpCompanion.EmbeddingServing,
-       batch_timeout: 100},
+      # Local embeddings model — only in dev (too heavy for small prod servers)
+      if(Application.get_env(:sipcp_companion, :enable_embeddings, false),
+        do: {Nx.Serving,
+             serving: SipcpCompanion.AI.Embeddings.serving(),
+             name: SipcpCompanion.EmbeddingServing,
+             batch_timeout: 100},
+        else: nil
+      ),
       # WhatsApp bot state
       SipcpCompanion.WhatsApp.Bot,
       # Agent registry — each conversation session is a GenServer
@@ -27,6 +30,8 @@ defmodule SipcpCompanion.Application do
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
+    children = Enum.reject(children, &is_nil/1)
+
     opts = [strategy: :one_for_one, name: SipcpCompanion.Supervisor]
     Supervisor.start_link(children, opts)
   end

@@ -70,10 +70,10 @@ defmodule SipcpCompanion.MixProject do
       # Vector search (pgvector)
       {:pgvector, "~> 0.3"},
 
-      # Local embeddings (Bumblebee + EXLA)
-      {:bumblebee, "~> 0.6"},
-      {:nx, "~> 0.9"},
-      {:exla, "~> 0.9"}
+      # Local embeddings (Bumblebee + EXLA) — dev only, too heavy for small prod servers
+      {:bumblebee, "~> 0.6", only: :dev},
+      {:nx, "~> 0.9", only: :dev},
+      {:exla, "~> 0.9", only: :dev}
     ]
   end
 
