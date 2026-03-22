@@ -23,7 +23,25 @@ defmodule SipcpCompanion.Release do
 
         if File.exists?(seed_file) do
           sql = File.read!(seed_file)
-          Ecto.Adapters.SQL.query!(repo, sql)
+
+          statements =
+            sql
+            |> String.split(";\n", trim: true)
+            |> Enum.filter(&(String.trim(&1) != ""))
+
+          IO.puts("Loading #{length(statements)} statements...")
+
+          Enum.each(statements, fn stmt ->
+            stmt = String.trim(stmt)
+            if stmt != "" do
+              try do
+                Ecto.Adapters.SQL.query!(repo, stmt)
+              rescue
+                e -> IO.puts("Warning: #{Exception.message(e)}")
+              end
+            end
+          end)
+
           IO.puts("Seed loaded successfully")
         else
           IO.puts("No seed file found at #{seed_file}")
