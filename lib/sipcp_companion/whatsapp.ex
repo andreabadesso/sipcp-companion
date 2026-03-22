@@ -61,7 +61,13 @@ defmodule SipcpCompanion.WhatsApp do
     Req.get(url, headers: [{"apikey", api_key()}])
   end
 
+  def delete_instance do
+    url = "#{base_url()}/instance/delete/#{@instance}"
+
+    Req.delete(url, headers: [{"apikey", api_key()}])
+  end
+
   defp webhook_url do
-    System.get_env("WEBHOOK_URL") || "http://host.docker.internal:4002/api/whatsapp/webhook"
+    System.get_env("WEBHOOK_URL") || "http://172.17.0.1:4000/api/whatsapp/webhook"
   end
 end

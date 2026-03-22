@@ -27,6 +27,14 @@ defmodule SipcpCompanionWeb.Router do
     post "/whatsapp/webhook", WhatsAppController, :webhook
   end
 
+  scope "/admin", SipcpCompanionWeb do
+    pipe_through :browser
+
+    get "/status", AdminController, :status
+    get "/qr", AdminController, :qrcode
+    get "/setup", AdminController, :setup
+  end
+
   # Enable LiveDashboard in development
   if Application.compile_env(:sipcp_companion, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put
