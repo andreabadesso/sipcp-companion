@@ -14,6 +14,29 @@ defmodule SipcpCompanion.Release do
     end
   end
 
+  def seed do
+    load_app()
+
+    for repo <- repos() do
+      {:ok, _, _} = Ecto.Migrator.with_repo(repo, fn repo ->
+        seed_file = Application.app_dir(:sipcp_companion, "priv/repo/seed.sql")
+
+        if File.exists?(seed_file) do
+          sql = File.read!(seed_file)
+          Ecto.Adapters.SQL.query!(repo, sql)
+          IO.puts("Seed loaded successfully")
+        else
+          IO.puts("No seed file found at #{seed_file}")
+        end
+      end)
+    end
+  end
+
+  def migrate_and_seed do
+    migrate()
+    seed()
+  end
+
   def rollback(repo, version) do
     load_app()
     {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :down, to: version))

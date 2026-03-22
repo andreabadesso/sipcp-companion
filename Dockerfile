@@ -48,9 +48,8 @@ WORKDIR /app
 RUN useradd --create-home app
 COPY --from=build --chown=app:app /app/_build/prod/rel/sipcp_companion ./
 
-# Copy book data for RAG ingest
-COPY --chown=app:app book/ocr/pages ./book/ocr/pages
-COPY --chown=app:app priv/repo/ingest_book.exs ./priv/repo/ingest_book.exs
+# Copy seed data (book pages with embeddings)
+COPY --chown=app:app priv/repo/seed.sql ./priv/repo/seed.sql
 
 USER app
 
