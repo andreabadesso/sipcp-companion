@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+
+# Build artifacts
+_build
+deps
+node_modules
+
+# Dev/test
+.env
+.nix-postgres
+.direnv
+.fetch
+tmp
+cover
+doc
+
+# Book temp files
+book/.tmp
+book/pdf
+
+# IDE
+.elixir_ls
+.vscode
+
+# OS
+.DS_Store

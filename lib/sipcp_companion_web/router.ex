@@ -21,10 +21,11 @@ defmodule SipcpCompanionWeb.Router do
     get "/tts", TtsController, :stream
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", SipcpCompanionWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", SipcpCompanionWeb do
+    pipe_through :api
+
+    post "/whatsapp/webhook", WhatsAppController, :webhook
+  end
 
   # Enable LiveDashboard in development
   if Application.compile_env(:sipcp_companion, :dev_routes) do

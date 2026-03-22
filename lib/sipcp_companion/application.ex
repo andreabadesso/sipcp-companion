@@ -17,6 +17,8 @@ defmodule SipcpCompanion.Application do
        serving: SipcpCompanion.AI.Embeddings.serving(),
        name: SipcpCompanion.EmbeddingServing,
        batch_timeout: 100},
+      # WhatsApp bot state
+      SipcpCompanion.WhatsApp.Bot,
       # Agent registry — each conversation session is a GenServer
       {Registry, keys: :unique, name: SipcpCompanion.AgentRegistry},
       # Start to serve requests, typically the last entry
