@@ -17,14 +17,16 @@ RUN mkdir config
 COPY config/config.exs config/prod.exs config/runtime.exs config/
 RUN mix deps.compile
 
-# Build assets
+# Copy source
 COPY assets assets
 COPY priv priv
 COPY lib lib
-RUN mix assets.deploy
 
-# Compile app
+# Compile first (generates colocated hooks for esbuild)
 RUN mix compile
+
+# Then build assets
+RUN mix assets.deploy
 
 # Build release
 RUN mix release
